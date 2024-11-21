@@ -1,0 +1,23 @@
+ {
+	"manifest_version": 3,
+	"name": "Google AI Challenge Extension",
+	"version": "1.0.0",
+	"action": {
+		 "default_popup": "popup/index.html",
+		"default_icon": "icons/icon16.png"
+	},
+	"background": {
+		"service_worker": "background/index.js",
+		"type": "module"
+	},
+	"content_scripts": [
+		{
+			"matches": ["https://*/*", "http://*/*"],
+			 "css": ["content/index.css"],
+			"js": [
+				 "content/index.js"
+			 ]
+		}
+	],
+	"permissions": ["scripting", "activeTab", "contextMenus", "aiLanguageModelOriginTrial"]
+}

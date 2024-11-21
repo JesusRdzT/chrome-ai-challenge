@@ -1,0 +1,123 @@
+.ext-dialog-box {
+	color: #FAFAFA;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	width: min(90vw, 300px);
+	padding: 1rem 1.5rem;
+	background: linear-gradient(135deg, #4facfe 0%, #a18cd1 100%);
+	border-radius: 0.75rem;
+	zIndex: 1000;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.ext-dialog-box * {
+	color: #FAFAFA;
+}
+
+.ext-row {
+	display: flex;
+	flex-direction: row;
+}
+
+.ext-col {
+	display: flex;
+	flex-direction:column;
+}
+
+.ext-dialog-box .close-btn {
+	position: absolute;
+	right: 0.5rem;
+	top: 0.5rem;
+	width: 1rem;
+	aspect-ratio: 1;
+	padding: 0;
+	border: none;
+	border-radius: 10000px;
+	background-color: transparent;
+}
+
+.ext-dialog-box .ext-dialog-content {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.ext-dialog-box .ext-dialog-footer {
+	width: 100%;
+	height: 100%;
+	display: inline-flex;
+}
+
+/* Shows a small fade animation to all the children of .ext-dialog-footer */
+.ext-dialog-box .ext-dialog-footer * {
+	transition: opacity 0.5s;
+}
+
+.ext-btn-primary {
+	background-color: #00000030;
+	color: #FAFAFA;
+	border: none;
+	border-radius: 0.5rem;
+	padding: 0.5rem 1rem;
+	margin: 0.5rem 0;
+}
+
+.ext-dialog-box .row {
+	display: flex;
+	flex-direction: row;
+}
+
+.ext-dialog-box .col {
+	display: flex;
+	flex-direction: column;
+}
+
+.close-btn:hover {
+	cursor: pointer;
+	background-color: #00000020;
+}
+
+.ext-dialog-box .ext-spinner {
+	display: flex;
+	justify-self: center;
+	align-self: center;
+	justify-content: center;
+	align-items: center;
+	width: 2rem;
+	height: 2rem;
+	border: none;
+	border-top: 0.1rem solid white;
+	border-radius: 10000px;
+
+	/* Uses the rotate animation on the element */
+	animation: rotate 1s linear infinite;
+}
+
+
+/* A keyframe that rotates 360 degrees indefinitely */
+@keyframes rotate {
+from {
+	transform: rotate(0deg);
+}
+to {
+	transform: rotate(360deg);
+}
+}
+
+.ext-text {
+	color: #FAFAFA;
+	pointer-events: none;
+}
+/* write nothing if the textcontent is empty */
+.ext-text-speaker:empty::before {
+	content: '';
+}
+.ext-text-speaker::before {
+
+	content: '📢';
+	cursor: pointer;
+	pointer-events: all;
+	margin-right: 0.5rem;
+}
