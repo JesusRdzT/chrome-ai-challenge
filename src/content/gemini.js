@@ -29,36 +29,52 @@ class LanguageAssistantModel {
 	* @returns {Promise<ReadableStream>} - The stream containing the definition
 	*/
 	async defineWordStream(word) {
-		const stream = await this.session.promptStreaming(
-			this.DEFINITION_TEMPLATE.replace(":word", word),
-		);
-
-		return stream;
-	}
+        try {
+            const stream = await this.session.promptStreaming(
+                this.DEFINITION_TEMPLATE.replace(":word", word),
+            );
+            return stream;
+        } catch (error) {
+            console.error(`Error streaming definition for "${word}":`, error);
+            throw new Error(`Unable to stream definition for "${word}".`);
+        }
+    }
 
 	async defineWord(word) {
-		const definition = await this.session.prompt(
-			this.DEFINITION_TEMPLATE.replace(":word", word),
-		);
-
-		return definition;
-	}
+        try {
+            const definition = await this.session.prompt(
+                this.DEFINITION_TEMPLATE.replace(":word", word),
+            );
+            return definition;
+        } catch (error) {
+            console.error(`Error defining word "${word}":`, error);
+            return `Unable to provide a definition for "${word}". Please try again later.`;
+        }
+    }
 
 	async getExample(word) {
-		const example = await this.session.prompt(
-			this.EXAMPLE_TEMPLATE.replace(":word", word),
-		);
-
-		return example;
-	}
+        try {
+            const example = await this.session.prompt(
+                this.EXAMPLE_TEMPLATE.replace(":word", word),
+            );
+            return example;
+        } catch (error) {
+            console.error(`Error getting example for "${word}":`, error);
+            return `Unable to provide an example for "${word}". Please try again later.`;
+        }
+    }
 
 	async getExampleStream(word) {
-		const stream = await this.session.promptStreaming(
-			this.EXAMPLE_TEMPLATE.replace(":word", word),
-		);
-
-		return stream
-	}
+        try {
+            const stream = await this.session.promptStreaming(
+                this.EXAMPLE_TEMPLATE.replace(":word", word),
+            );
+            return stream;
+        } catch (error) {
+            console.error(`Error streaming example for "${word}":`, error);
+            throw new Error(`Unable to stream example for "${word}".`);
+        }
+    }
 
 	static async create() {
 		const instance = new LanguageAssistantModel();
