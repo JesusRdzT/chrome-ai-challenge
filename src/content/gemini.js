@@ -11,7 +11,6 @@ class LanguageAssistantModel {
 		this.DEFINITION_TEMPLATE = `Give me one definition for ":word"`;
 		this.EXTRA_DEFINITION = `Give me a different definition for ":word"`;
 		this.EXAMPLE_TEMPLATE = 'Give me one example with ":word"';
-		this.TRANSLATION_TEMPLATE = `Give me the translation and spelling of following text into :language: ":text"`;
 	}
 
 	async init() {
@@ -74,25 +73,6 @@ class LanguageAssistantModel {
         } catch (error) {
             console.error(`Error streaming example for "${word}":`, error);
             throw new Error(`Unable to stream example for "${word}".`);
-        }
-    }
-
-	async translateText(text, language) {
-        const prompt = this.TRANSLATION_TEMPLATE
-            .replace(":language", language)
-            .replace(":text", text);
-
-        try {
-            const translation = await this.session.prompt(prompt);
-            return translation;
-        } catch (error) {
-            if (error.name === "NotSupportedError") {
-                console.warn(`Translation not supported for language: ${language}`);
-                return `Translation not supported for ${language}. Please try again.`;
-            } else {
-                console.error("An unexpected error occurred:", error);
-                throw error; 
-            }
         }
     }
 
