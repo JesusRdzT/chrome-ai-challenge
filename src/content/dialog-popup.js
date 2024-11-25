@@ -46,38 +46,38 @@ const TRIGGER_OPTIONS = {
 export async function startDefinitionExperience(text) {
     const { dialog, header, body, footer } = createDialogNearSelection(text);
 
-    // Adds the title of the word or phrase to define to the header
     BaseComponents.Text({
         text: text,
         level: "h2",
         parent: header
     });
 
-    async function loadDefinition(word, isAlternate = false) {
-        const loader = BaseComponents.Loader().appendTo(body); 
-        body.innerHTML = ""; 
-        try {
-            const model = await LanguageAssistantModel.create();
-            const definition = isAlternate
-                ? await model.defineWord(`Provide an alternate definition for "${word}"`)
-                : await model.defineWord(word);
+    const model = await LanguageAssistantModel.create();
 
-            loader.node.remove();
-            BaseComponents.Text({ text: definition, parent: body });
-        } catch (error) {
-            loader.node.remove();
-            BaseComponents.Text({ text: "Failed to fetch definition. Please try again.", parent: body });
-            console.error("Error loading definition:", error);
-        }
+    // Show loader before async operation
+    model.showLoader(body);
+
+    try {
+        const definition = await model.defineWord(text);
+        body.innerHTML = ""; // Clear content
+        BaseComponents.Text({ text: definition, parent: body });
+    } catch (error) {
+        body.innerHTML = "";
+        BaseComponents.Text({
+            text: "Failed to fetch the definition. Please try again later.",
+            parent: body
+        });
+        console.error("Error loading definition:", error);
+    } finally {
+        // Hide loader after async operation
+        model.hideLoader();
     }
-
-    await loadDefinition(text);
 
     const options = [
         {
             text: "See Other Definitions",
             action: async () => {
-                await loadDefinition(text, true);
+                await startDefinitionExperience(text);
             }
         },
         {
@@ -97,7 +97,6 @@ export async function startDefinitionExperience(text) {
 }
 
 
-
 export async function startExamplesExperience(text) {
     const { dialog, header, body, footer } = createDialogNearSelection(text);
 
@@ -107,37 +106,36 @@ export async function startExamplesExperience(text) {
         parent: header
     });
 
-    async function loadExample(word, isAdditional = false) {
-        const loader = BaseComponents.Loader().appendTo(body); 
+    const model = await LanguageAssistantModel.create();
+
+    // Show loader before async operation
+    model.showLoader(body);
+
+    try {
+        const example = await model.getExample(text);
+        body.innerHTML = ""; // Clear content
+        BaseComponents.Text({ text: example, parent: body });
+    } catch (error) {
         body.innerHTML = "";
-
-        try {
-            const model = await LanguageAssistantModel.create();
-            const example = isAdditional
-                ? await model.getExample(`Provide another example for "${word}"`)
-                : await model.getExample(word);
-
-            loader.node.remove(); 
-            BaseComponents.Text({ text: example, parent: body });
-        } catch (error) {
-            loader.node.remove();
-            BaseComponents.Text({ text: "Failed to fetch example. Please try again.", parent: body });
-            console.error("Error loading example:", error);
-        }
+        BaseComponents.Text({
+            text: "Failed to fetch the example. Please try again later.",
+            parent: body
+        });
+        console.error("Error loading example:", error);
+    } finally {
+        // Hide loader after async operation
+        model.hideLoader();
     }
-
-  
-    await loadExample(text);
 
     const options = [
         {
             text: "See Definitions",
-            action: () => startDefinitionExperience(text) 
+            action: () => startDefinitionExperience(text)
         },
         {
             text: "Give Me More Examples",
             action: async () => {
-                await loadExample(text, true);
+                await startExamplesExperience(text);
             }
         }
     ];

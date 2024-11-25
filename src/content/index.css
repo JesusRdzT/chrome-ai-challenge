@@ -101,8 +101,8 @@
 	width: 2rem;
 	height: 2rem;
 	border: none;
-	border-top: 0.1rem solid white;
-	border-radius: 10000px;
+	border-top: 5px solid #3498db;
+	border-radius: 100%;
 
 	/* Uses the rotate animation on the element */
 	animation: rotate 1s linear infinite;
