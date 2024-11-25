@@ -1,18 +1,17 @@
 .ext-dialog-box {
-	color: #FAFAFA;
+	color: #ffffff;
 	position: absolute;
 	display: flex;
 	flex-direction: column;
 	width: min(90vw, 300px);
 	padding: 1rem 1.5rem;
-	background: linear-gradient(135deg, #4facfe 0%, #a18cd1 100%);
+	background: white;
 	border-radius: 0.75rem;
-	zIndex: 1000;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .ext-dialog-box * {
-	color: #FAFAFA;
+	color: black;
 }
 
 .ext-row {
@@ -56,12 +55,26 @@
 }
 
 .ext-btn-primary {
-	background-color: #00000030;
-	color: #FAFAFA;
-	border: none;
-	border-radius: 0.5rem;
-	padding: 0.5rem 1rem;
-	margin: 0.5rem 0;
+    background-color: #1EAF4C;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Add smooth transitions */
+}
+
+.ext-btn-primary:hover {
+    background-color: #ffffff;
+    color: #000000;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.ext-btn-primary:active {
+    transform: scale(0.95); 
+    background-color: #1EAF4C;
+    color: #000000;
 }
 
 .ext-dialog-box .row {
@@ -107,17 +120,94 @@ to {
 }
 
 .ext-text {
-	color: #FAFAFA;
+	color: #000000;
 	pointer-events: none;
 }
-/* write nothing if the textcontent is empty */
+
 .ext-text-speaker:empty::before {
 	content: '';
 }
-.ext-text-speaker::before {
 
+.ext-text-speaker::before {
 	content: '📢';
 	cursor: pointer;
 	pointer-events: all;
 	margin-right: 0.5rem;
+}
+
+/* ---------------------------------- Dropdown Styles ---------------------------------- */
+
+#translation-dropdown-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Dropdown container */
+.dropdown-container {
+    position: relative;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Search input */
+.dropdown-search-input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px 4px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+/* Dropdown options */
+.dropdown-options {
+    position: absolute;
+    top: 100%;
+    left: 0; /* Align to the container */
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+}
+
+/* Dropdown option */
+.dropdown-option {
+	padding: 0.5rem;
+	font-size: 1rem;
+	cursor: pointer;
+	border-bottom: 1px solid #f0f0f0;
+	transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-option:last-child {
+	border-bottom: none;
+}
+
+.dropdown-option:hover {
+	background-color: #2F88FC;
+	color: #ffffff;
+}
+
+/* Make dropdown responsive */
+@media (max-width: 480px) {
+	.dropdown-container {
+		width: 100%;
+		max-width: none;
+	}
+	.dropdown-search-input {
+		padding: 0.4rem;
+		font-size: 0.9rem;
+	}
+	.dropdown-option {
+		padding: 0.4rem;
+		font-size: 0.9rem;
+	}
 }

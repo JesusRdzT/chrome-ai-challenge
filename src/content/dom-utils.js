@@ -260,7 +260,7 @@ export class BaseComponents {
 			...props,
 			children: [
 				BaseComponents.Button({
-					text: '❌',
+					text: 'x',
 					classList: 'close-btn',
 					onclick: e => e.target.parentNode.remove()
 				}),
@@ -276,8 +276,6 @@ export class BaseComponents {
 		}).setClassList('ext-dialog-box');;
 	}
 }
-
-
 
 /**
  * Gets the bounding rectangle of the current selection

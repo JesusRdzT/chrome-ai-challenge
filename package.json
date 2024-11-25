@@ -10,9 +10,9 @@
     "node": ">= 14.0.0",
     "npm": ">= 6.0.0"
   },
-	"scripts": {
-		"watch": "webpack --watch"
-	},
+  "scripts": {
+    "watch": "webpack --watch"
+  },
   "homepage": "",
   "repository": {
     "type": "git",
