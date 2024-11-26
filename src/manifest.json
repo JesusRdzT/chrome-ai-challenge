@@ -35,6 +35,11 @@
      "aiLanguageModelOriginTrial",
      "storage",
      "tts",
-     "ttsEngine"
-   ]
+     "ttsEngine",
+	 "tabs"
+   ],
+   "host_permissions": [
+    "<all_urls>"
+  	]
+   
 }
