@@ -15,7 +15,7 @@
 }
 
 .ext-row {
-	display: flex;
+	display: inline-flex;
 	flex-direction: row;
 }
 

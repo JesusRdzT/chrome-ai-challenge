@@ -1,15 +1,7 @@
-import { startMainExperience } from './main-popup.js';
-import {
-    startDefinitionExperience,
-    startExamplesExperience
-} from './dialog-popup.js';
+import { showAssistantDialog } from './modal-dialog.js';
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.action === "dialogOpen") {
-        startDefinitionExperience(message.text);
-    } else if (message.action === "showMain") {
-        startMainExperience();
-    } else if (message.action === "dialogExample") {
-        startExamplesExperience(message.text);
-    }
+  if (message.action === "showContextDialog") {
+    showAssistantDialog(message.context);
+  }
 });

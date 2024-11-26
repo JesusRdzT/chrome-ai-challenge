@@ -1,4 +1,5 @@
-console.log("hello");
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-	console.log(message);
+  const code = document.createElement("pre");
+  code.innerText = JSON.stringify(message, null, 2);
+  document.body.appendChild(code);
 });

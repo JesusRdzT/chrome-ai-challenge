@@ -263,14 +263,6 @@ export class BaseComponents {
 					text: 'x',
 					classList: 'close-btn',
 					onclick: e => e.target.parentNode.remove()
-				}),
-				BaseComponents.Row({ id: "ext-dialog-header" }),
-				BaseComponents.Col({ id: "ext-dialog-content" }),
-				BaseComponents.Row({
-					id: "ext-dialog-footer",
-					style: {
-						gap: '0.5rem'
-					}
 				})
 			]
 		}).setClassList('ext-dialog-box');;
