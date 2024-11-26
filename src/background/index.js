@@ -9,16 +9,11 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
-  const [currentTab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
-
-  if (currentTab?.id && info.selectionText) {
-    chrome.tabs.sendMessage(
-      currentTab.id,
-      {
-        action: "showContextDialog",
-        context: info.selectionText
-      }
-    );
+  if (info.selectionText && tab.id) {
+    chrome.tabs.sendMessage(tab.id, {
+      action: "showContextDialog",
+      context: info.selectionText,
+    });
   }
 });
 
@@ -28,8 +23,52 @@ chrome.action.onClicked.addListener((tab) => {
   }
 });
 
-chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
-  chrome.action.setPopup({ popup: "popup/index.html" });
-  await chrome.action.openPopup();
-  chrome.runtime.sendMessage(message);
+let isCtrlPressed = false;
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === "keyEvent") {
+    isCtrlPressed = message.keyPressed;
+  }
+});
+
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.status === "complete" && tab.active) {
+    chrome.scripting.executeScript({
+      target: { tabId },
+      func: injectHotkeyListener,
+    });
+  }
+});
+
+function injectHotkeyListener() {
+  let isCtrlPressed = false;
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Control") {
+      isCtrlPressed = true;
+    }
+  });
+
+  document.addEventListener("keyup", (event) => {
+    if (event.key === "Control") {
+      isCtrlPressed = false;
+    }
+  });
+
+  document.addEventListener("mouseup", () => {
+    const selectedText = window.getSelection().toString().trim();
+    if (isCtrlPressed && selectedText) {
+      chrome.runtime.sendMessage({
+        action: "showContextDialog",
+        context: selectedText,
+      });
+    }
+  });
+}
+
+// Listen for messages and forward to content script
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === "showContextDialog" && sender.tab) {
+    chrome.tabs.sendMessage(sender.tab.id, message);
+  }
 });
