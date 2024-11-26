@@ -28,5 +28,13 @@
 			 ]
 		}
 	],
-	"permissions": ["scripting", "activeTab", "contextMenus", "aiLanguageModelOriginTrial"]
+	"permissions": [
+     "scripting",
+     "activeTab",
+     "contextMenus",
+     "aiLanguageModelOriginTrial",
+     "storage",
+     "tts",
+     "ttsEngine"
+   ]
 }
