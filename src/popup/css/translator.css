@@ -1,0 +1,63 @@
+/* Source and Target Sections */
+#source-section, #target-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-right: 2rem;
+  }
+  
+  #source-select, #target-select {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  #source-textarea, #target-textarea {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    resize: none;
+    background-color: #f9f9f9;
+    color: #000000;
+  }
+  
+  #source-textarea::placeholder, #target-textarea::placeholder {
+    color: #888888;
+  }
+  
+  /* Swap Button and Divider */
+  div {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-right: 2rem;
+    margin-top: 1rem;
+  }
+  
+  hr {
+    flex: 1;
+    height: 1px;
+    background-color: #ddd;
+    border: none;
+  }
+  
+  #swap-button {
+    background-color: #2F88FC;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  #swap-button:hover {
+    background-color: #1E5FB9;
+    transform: scale(1.05);
+  }
