@@ -3,32 +3,36 @@
   <head>
     <meta charset="UTF-8">
     <title>Extension</title>
-    <meta name="viewport" content="width=300, height=450, initial-scale=1.0">
+    <meta name="viewport" content="width=400, height=500, initial-scale=1.0">
     <link rel="stylesheet" href="global.css"> 
   </head>
   <body>
     <header>
       <h1>Language Assistant</h1>
-      <a href="settings.html">Settings</a>
+      <a href="settings.html"><img src="icons/gear.png" alt="Settings"></a>
     </header>
 
     <section>
-      <div>
-        <a href="translator.html">Translator</a>
-        <a href="storyteller.html">Storyteller</a>
+      <div class="translator-storyteller">
+        <a href="translator.html" class="ext-btn-secondary">Translator</a>
+        <span class="dot">•</span>
+        <a href="storyteller.html" class="ext-btn-secondary">Storyteller</a>
       </div>
     </section>
 
     <section>
       <h2>Prompt</h2>
 
-      <a href="prompt.html">New session</a>
+      <a href="prompt.html" class="new-session-btn">New session</a>
 
       <div>
         <h3>Saved sessions</h3>
 
         <div id="saved-sessions-list-container">
           <ul id="saved-sessions-list">
+            <li>Session 1</li>
+            <li>Session 2</li>
+            <li>Session 3</li>
           </ul>
         </div>
       </div>

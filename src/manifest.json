@@ -22,9 +22,9 @@
 	"content_scripts": [
 		{
 			"matches": ["https://*/*", "http://*/*"],
-			 "css": ["content/index.css"],
+			"css": ["content/index.css"],
 			"js": [
-				 "content/content.js"
+				 "content/index.js"
 			 ]
 		}
 	],
@@ -40,6 +40,12 @@
    ],
    "host_permissions": [
     "<all_urls>"
-  	]
+  	],
+	"web_accessible_resources": [
+		{
+			"resources": ["index.css", "main.html", "index.js"],
+			"matches": ["<all_urls>"]
+		}
+	]
    
 }

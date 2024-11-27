@@ -11,8 +11,11 @@
 	animation: popup-animation 0.3s ease-out forwards;
 	opacity: 0;
 	transform: scale(0.8);
+	box-sizing: border-box; 
+	overflow: hidden; 
 }
 
+/* Popup animation */
 @keyframes popup-animation {
 	0% {
 		opacity: 0;
@@ -24,277 +27,207 @@
 	}
 }
 
+/* Form layout */
 .ext-dialog-box form {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem; 
-    width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	width: 100%;
 }
 
+/* Universal styling for children */
 .ext-dialog-box * {
 	color: black;
+	box-sizing: border-box;
 }
 
+/* Row layout */
 .ext-row {
-	display: inline-flex;
+	display: flex;
 	flex-direction: row;
+	width: 100%;
+	gap: 0.5rem;
+	justify-content: space-between;
+	align-items: center;
 }
 
+/* Column layout */
 .ext-col {
 	display: flex;
-	flex-direction:column;
+	flex-direction: column;
+	width: 100%;
+	gap: 0.5rem;
 }
 
+/* Options row */
 .ext-options-row {
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    gap: 1rem; 
-    margin: 0.5rem 0;
-    flex-wrap: nowrap; 
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 0.5rem 0;
+	width: 100%;
 }
 
 /* Options container */
 .options-container {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    justify-content: center;
-    flex: 1; 
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	width: 100%;
 }
 
 /* Dot separator */
 .option-dot {
-    font-size: 1rem;
-    color: #888888;
-    white-space: nowrap; 
+	font-size: calc(0.8rem + 0.1vw);
+	color: #888888;
 }
 
+/* Close button */
 .ext-dialog-box .close-btn {
 	position: absolute;
 	right: 0.5rem;
 	top: 0.5rem;
-	width: 1rem;
+	width: calc(1rem + 0.1vw);
 	aspect-ratio: 1;
 	padding: 0;
 	border: none;
 	border-radius: 10000px;
 	background-color: transparent;
-}
-
-.ext-dialog-box .ext-dialog-content {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-}
-
-.ext-dialog-box .ext-dialog-footer {
-	width: 100%;
-	height: 100%;
-	display: inline-flex;
-}
-
-/* Shows a small fade animation to all the children of .ext-dialog-footer */
-.ext-dialog-box .ext-dialog-footer {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.ext-btn-submit {
-    background-color: #2F88FC;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    padding: 0.6rem 1rem;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    text-align: center;
-    cursor: pointer;
-    white-space: nowrap;
-	
-}
-
-.ext-btn-submit:hover {
-    background-color: #ffffff;
-    color: #2F88FC;
-    transform: scale(1.05);
-    cursor: pointer;
-}
-
-.ext-btn-submit:active {
-    transform: scale(0.95);
-    background-color: #2F88FC;
-    color: #ffffff;
-}
-
-.ext-btn-primary {
-    background-color: #1EAF4C;
-    color: #ffffff;
-    border: none;
-    border-radius: 0.5rem;
-    padding: 0.5rem 1rem;
-    margin: 0.5rem; 
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    flex: 1; 
-    text-align: center;
-}
-
-.ext-btn-primary:hover {
-    background-color: #ffffff;
-    color: #1EAF4C;
-    transform: scale(1.05);
-    cursor: pointer;
-}
-
-.ext-btn-primary:active {
-    transform: scale(0.95); 
-    background-color: #1EAF4C;
-    color: #ffffff;
-}
-
-.ext-btn-secondary {
-	background-color: transparent;
-    color: #2F88FC;
-    border: 2px solid #2F88FC;
-    border-radius: 2rem;
-    padding: 0.3rem 1rem;
-    font-size: 0.8rem; 
-    text-align: center;
-    white-space: nowrap; 
-    flex: 1;
-    max-width: 160px; 
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.ext-btn-secondary:hover {
-    background-color: transparent;
-    color: #2F88FC;
-    transform: scale(1.05);
-    cursor: pointer;
-}
-
-.ext-btn-secondary:active {
-    transform: scale(0.95); 
-    background-color: #2F88FC;
-    color: #ffffff;
-}
-
-.ext-dialog-box .row {
-	display: flex;
-	flex-direction: row;
-}
-
-.ext-dialog-box .col {
-	display: flex;
-	flex-direction: column;
+	cursor: pointer;
 }
 
 .close-btn:hover {
-	cursor: pointer;
 	background-color: #00000020;
 }
 
+/* Footer layout */
+.ext-dialog-box .ext-dialog-footer {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+/* Spinner */
 .ext-dialog-box .ext-spinner {
 	display: flex;
-	justify-self: center;
-	align-self: center;
 	justify-content: center;
 	align-items: center;
-	width: 2rem;
-	height: 2rem;
+	width: calc(1.5rem + 0.2vw);
+	height: calc(1.5rem + 0.2vw);
 	border: none;
 	border-top: 0.1rem solid white;
 	border-radius: 10000px;
-
-	/* Uses the rotate animation on the element */
 	animation: rotate 1s linear infinite;
 }
 
-
-/* A keyframe that rotates 360 degrees indefinitely */
 @keyframes rotate {
-from {
-	transform: rotate(0deg);
-}
-to {
-	transform: rotate(360deg);
-}
-}
-
-.prompt-label {
-	font-size: 1rem;
-	font-weight: 500;
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
 
-.ext-text {
-	color: #000000;
-	pointer-events: none;
-}
-
-.ext-text-speaker:empty::before {
-	content: '';
-}
-
-.ext-text-speaker::before {
-	content: '📢';
+/* Buttons */
+.ext-btn-submit,
+.ext-btn-primary,
+.ext-btn-secondary {
+	font-size: calc(0.8rem + 0.1vw); 
+	padding: calc(0.4rem + 0.1vw) calc(0.8rem + 0.2vw);
+	border-radius: 4px;
 	cursor: pointer;
-	pointer-events: all;
-	margin-right: 0.5rem;
+	text-align: center;
+	transition: transform 0.2s ease, background-color 0.3s ease;
+	flex: 1; 
+	max-width: 100%;
 }
 
+/* Submit button */
+.ext-btn-submit {
+	background-color: #2F88FC;
+	color: #ffffff;
+	border: none;
+}
 
-/* ---------------------------------- Dropdown Styles ---------------------------------- */
+.ext-btn-submit:hover {
+	background-color: #ffffff;
+	color: #2F88FC;
+	transform: scale(1.05);
+}
 
-#translation-dropdown-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Primary button */
+.ext-btn-primary {
+	background-color: #1EAF4C;
+	color: #ffffff;
+	border: none;
+}
+
+.ext-btn-primary:hover {
+	background-color: #ffffff;
+	color: #1EAF4C;
+	transform: scale(1.05);
+}
+
+/* Secondary button */
+.ext-btn-secondary {
+	background-color: transparent;
+	color: #2F88FC;
+	border: 2px solid #2F88FC;
+	padding: calc(0.3rem + 0.1vw) calc(0.7rem + 0.2vw);
+	border-radius: 2rem;
+}
+
+.ext-btn-secondary:hover {
+	background-color: #2F88FC;
+	color: #ffffff;
+	transform: scale(1.05);
 }
 
 /* Dropdown container */
 .dropdown-container {
-    position: relative;
-    max-width: 300px;
-    display: flex;
-    flex-direction: column;
+	position: relative;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
 }
 
 /* Search input */
 .dropdown-search-input {
-    flex: 1; 
-    font-size: 1rem;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    outline: none;
+	width: 100%;
+	font-size: calc(0.9rem + 0.1vw);
+	padding: calc(0.4rem + 0.1vw);
+	border: 1px solid #ccc;
+	border-radius: 4px;
+    background-color: #f9f9f9 !important;
+    flex: 1;
 }
 
 /* Dropdown options */
 .dropdown-options {
-    position: absolute;
-    top: 100%;
-    left: 0; /* Align to the container */
-    width: 100%;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px 4px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-height: 200px;
-    overflow-y: auto;
-    display: none;
-    z-index: 1000;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	max-height: 150px;
+	overflow-y: auto;
+	z-index: 1000;
 }
 
 /* Dropdown option */
 .dropdown-option {
-	padding: 0.5rem;
-	font-size: 1rem;
+	padding: calc(0.4rem + 0.1vw);
+	font-size: calc(0.8rem + 0.1vw);
 	cursor: pointer;
 	border-bottom: 1px solid #f0f0f0;
-	transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .dropdown-option:last-child {
@@ -306,19 +239,21 @@ to {
 	color: #ffffff;
 }
 
-/* Make dropdown responsive */
+/* Media queries for responsiveness */
 @media (max-width: 480px) {
-	.dropdown-container {
+	.ext-dialog-box {
 		width: 100%;
-		max-width: none;
+		padding: 0.8rem;
 	}
-	.dropdown-search-input {
-		padding: 0.4rem;
-		font-size: 0.9rem;
+
+	.ext-btn-submit,
+	.ext-btn-primary,
+	.ext-btn-secondary {
+		font-size: 0.8rem;
+		padding: 0.4rem 0.8rem;
 	}
-	.dropdown-option {
-		padding: 0.4rem;
-		font-size: 0.9rem;
+
+	.dropdown-options {
+		max-height: 120px;
 	}
 }
-
