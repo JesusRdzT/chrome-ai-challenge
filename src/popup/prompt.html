@@ -4,26 +4,34 @@
     <meta charset="UTF-8">
     <title>Prompt</title>
     <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="css/prompt.css">
   </head>
   <body>
     <header>
-      <h1>Language Assistant</h1>
-      <a href="settings.html">Settings</a>
+      <h1 class="header-title">Language Assistant</h1>
+      <a href="settings.html" class="header-link">
+        <img src="icons/gear.png" alt="Settings" class="header-img">
+      </a>
     </header>
 
-    <section style="display: flex; gap: 0.25rem; align-items: center;">
-      <a href="main.html">Go back</a>
-      <h2>Prompt</h2>
-      <button>Translate</button>
-      <button>Save</button>
+    <section class="section-container">
+      <a href="main.html" class="section-link">Go back</a>
+      <h2 class="section-title">Prompt</h2>
+      <button class="section-button">Translate</button>
+      <button class="section-button">Save</button>
     </section>
 
-    <main style="display: flex; flex-direction: column; flex: 1 1 auto;">
-      <div id="chat" style="flex: 1 0 auto;"></div>
-      <div id="prompt-input-section">
-        <form id="prompt-input-fomr">
-          <input type="text" id="prompt-input" placeholder="Enter text to prompt" />
-          <button type="submit">Send</button>
+    <main class="main-container">
+      <div id="chat" class="chat-container"></div>
+      <div id="prompt-input-section" class="prompt-input-container">
+        <form id="prompt-input-form" class="prompt-input-form">
+          <input
+            type="text"
+            id="prompt-input"
+            class="prompt-input"
+            placeholder="Enter text to prompt"
+          />
+          <button type="submit" ><img src="icons/right-arrow.png" alt="Submit" class="header-img"></img></button>
         </form>
       </div>
     </main>

@@ -1,0 +1,89 @@
+/* --------------- Settings --------------- */
+
+.header-title2{
+    margin-right: 2rem;
+    font-size: 1.2rem;
+    color: black;
+  }
+  
+  /* Form Styles */
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-right: 2rem;
+  }
+  
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  
+  .form-label {
+    font-size: 0.9rem;
+    color: #000000;
+  }
+  
+  .form-input,
+  .form-select {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .form-button {
+    background-color: #2F88FC;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .form-button:hover {
+    background-color: white;
+    transform: scale(1.05);
+    color: #000000;
+  }
+  
+  /* Test Container */
+  .test-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .test-label {
+    font-size: 0.9rem;
+    color: #000000;
+  }
+  
+  .test-button {
+    background-color: #2F88FC;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .test-button:hover {
+    background-color: white;
+    transform: scale(1.05);
+    color: #000000;
+  }
+  
+  /* Status Message */
+  .status-message {
+    font-size: 0.9rem;
+    color: #888888;
+  }
+  

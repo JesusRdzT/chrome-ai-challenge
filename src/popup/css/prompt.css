@@ -1,0 +1,55 @@
+
+/* Main Styles */
+main {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    margin-right: 2rem;
+}
+
+#chat {
+    flex: 1 0 auto;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    overflow-y: auto;
+}
+
+/* Prompt Input Section */
+#prompt-input-section {
+    margin-top: 1rem;
+}
+
+#prompt-input-form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#prompt-input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+}
+
+#prompt-input::placeholder {
+    color: #888888;
+}
+
+#prompt-input-form button {
+    background-color: transparent;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#prompt-input-form button:hover {
+    transform: scale(1.25);
+}
