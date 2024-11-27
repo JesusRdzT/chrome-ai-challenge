@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Prompt</title>
+    <link rel="stylesheet" href="global.css">
+  </head>
+  <body>
+    <header>
+      <h1>Language Assistant</h1>
+      <a href="settings.html">Settings</a>
+    </header>
+
+    <section style="display: flex; gap: 0.25rem; align-items: center;">
+      <a href="main.html">Go back</a>
+      <h2>Prompt</h2>
+      <button>Translate</button>
+      <button>Save</button>
+    </section>
+
+    <main style="display: flex; flex-direction: column; flex: 1 1 auto;">
+      <div id="chat" style="flex: 1 0 auto;"></div>
+      <div id="prompt-input-section">
+        <form id="prompt-input-fomr">
+          <input type="text" id="prompt-input" placeholder="Enter text to prompt" />
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </main>
+
+    <script src="prompt.js"></script>
+  </body>
+</html>

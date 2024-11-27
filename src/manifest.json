@@ -3,7 +3,7 @@
 	"name": "Google AI Challenge Extension",
 	"version": "1.0.0",
 	"action": {
-		"default_popup": "popup/index.html",
+		"default_popup": "popup/main.html",
 		"default_icon": {
 		"16": "icons/icon16.png",
 		"48": "icons/icon48.png",
