@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <title>Extension</title>
     <meta name="viewport" content="width=400, height=500, initial-scale=1.0">
-    <link rel="stylesheet" href="global.css"> 
+    <link rel="stylesheet" href="global.css">
   </head>
   <body>
     <header>
-      <h1>Language Assistant</h1>
-      <a href="settings.html"><img src="icons/gear.png" alt="Settings"></a>
+      <h1 class="header-title">Language Assistant</h1>
+      <a href="settings.html" class="header-link">
+        <img src="icons/gear.png" alt="Settings" class="header-img">
+      </a>
     </header>
 
-    <section>
+    <section class="section-container">
       <div class="translator-storyteller">
         <a href="translator.html" class="ext-btn-secondary">Translator</a>
         <span class="dot">•</span>
@@ -20,19 +22,19 @@
       </div>
     </section>
 
-    <section>
-      <h2>Prompt</h2>
+    <section class="section-container">
+      <h2 class="section-title">Prompt</h2>
 
-      <a href="prompt.html" class="new-session-btn">New session</a>
+      <a href="prompt.html" class="section-link new-session-btn">New session</a>
 
-      <div>
-        <h3>Saved sessions</h3>
+      <div class="saved-sessions-container">
+        <h3 class="section-subtitle">Saved sessions</h3>
 
-        <div id="saved-sessions-list-container">
-          <ul id="saved-sessions-list">
-            <li>Session 1</li>
-            <li>Session 2</li>
-            <li>Session 3</li>
+        <div id="saved-sessions-list-container" class="saved-sessions-container">
+          <ul id="saved-sessions-list" class="saved-sessions-list">
+            <li class="saved-session-item">Session 1</li>
+            <li class="saved-session-item">Session 2</li>
+            <li class="saved-session-item">Session 3</li>
           </ul>
         </div>
       </div>
