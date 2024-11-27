@@ -118,3 +118,16 @@ header {
   height: 1rem;
   margin-right: 0.5rem;
 }
+
+.icon-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.icon{
+  width: 3rem;
+  height: 3rem;
+}
