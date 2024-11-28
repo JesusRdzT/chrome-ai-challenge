@@ -37,6 +37,7 @@
     gap: 0.25rem;
     margin-right: 2rem;
     margin-top: 1rem;
+    margin-bottom: 1rem;
   }
   
   hr {
@@ -61,3 +62,53 @@
     background-color: #1E5FB9;
     transform: scale(1.05);
   }
+
+  
+/* Dropdown Styles */
+#sourceLanguage, #targetLanguage {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
+  background-color: #ffffff;
+  color: #000000;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+#sourceLanguage:focus, #targetLanguage:focus {
+  border-color: #2F88FC;
+  outline: none;
+}
+
+#sourceLanguage:hover, #targetLanguage:hover {
+  background-color: #f0f8ff;
+}
+
+/* Text Area Styles */
+#sourceLanguageTextArea, #targetLanguageTextArea {
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
+  background-color: #f9f9f9;
+  color: #000000;
+  transition: border-color 0.3s ease;
+}
+
+#sourceLanguageTextArea::placeholder, #targetLanguageTextArea::placeholder {
+  color: #888888;
+}
+
+#sourceLanguageTextArea:focus, #targetLanguageTextArea:focus {
+  border-color: #2F88FC;
+  outline: none;
+}
+
+#sourceLanguageTextArea:hover, #targetLanguageTextArea:hover {
+  background-color: #f0f8ff;
+}
+
+#sourceLanguageTextArea:focus, #targetLanguageTextArea:focus {
+  border-color: #2F88FC;
+  outline: none;
+}

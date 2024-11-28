@@ -14,6 +14,7 @@ main {
     border-radius: 0.25rem;
     padding: 0.5rem;
     overflow-y: auto;
+    transition: border-color 0.3s ease;
 }
 
 /* Prompt Input Section */
@@ -37,6 +38,10 @@ main {
 
 #prompt-input::placeholder {
     color: #888888;
+}
+
+#prompt-input:hover {
+    border-color: #2F88FC;
 }
 
 #prompt-input-form button {
