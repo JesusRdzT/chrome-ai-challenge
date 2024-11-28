@@ -53,3 +53,57 @@ main {
 #prompt-input-form button:hover {
     transform: scale(1.25);
 }
+
+/* Icons */
+.icons-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    margin-right: 2rem;
+    gap: 0.5rem;
+}
+
+.translate-icon, .bookmark-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.icons-container button {
+    all: unset;
+    cursor: pointer; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    position: relative; 
+    transition: transform 0.3s ease; 
+}
+
+.icons-container button:hover {
+    transform: scale(1.1); 
+}
+
+/* Tooltip styling */
+.icons-container button::after {
+    content: attr(data-tooltip); 
+    position: absolute;
+    bottom: -1.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333; 
+    color: #fff; 
+    padding: 0.25rem 0.5rem; 
+    font-size: 0.8rem; 
+    border-radius: 0.25rem; 
+    opacity: 0; 
+    visibility: hidden;
+    white-space: nowrap;
+    transition: opacity 0.3s ease, visibility 0.3s ease; 
+    z-index: 10; 
+}
+
+
+.icons-container button:hover::after {
+    opacity: 1; 
+    visibility: visible;
+}
