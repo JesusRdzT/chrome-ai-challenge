@@ -175,15 +175,15 @@
 
 /* Secondary button */
 .ext-btn-secondary {
-	background-color: transparent;
-	color: #2F88FC;
-	border: 2px solid #2F88FC;
+	background-color: transparent !important;
+	color: #2F88FC !important;
+	border: 2px solid #2F88FC !important;
 	padding: calc(0.3rem + 0.1vw) calc(0.7rem + 0.2vw);
 	border-radius: 2rem;
 }
 
 .ext-btn-secondary:hover {
-	background-color: #2F88FC;
+	background-color: #2F88FC !important;
 	color: #ffffff;
 	transform: scale(1.05);
 }
