@@ -5,15 +5,14 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 export default {
   mode: 'production',
   entry: {
-    content: './src/content/index.js',
-    // background: './src/background/index.js',
-    popup: './src/popup/popup.js',
-    settings: './src/popup/settings.js'
-    //options: './src/options/options.js'
+    'content/content': './src/content/index.js',
+    'popup/popup': './src/popup/popup.js',
+    'popup/settings': './src/popup/settings.js',
+    'popup/prompt': './src/popup/prompt.js'
   },
   output: {
     path: path.resolve('dist'),
-    filename: '[name]/[name].js'  // Creates separate folders for each entry
+    filename: '[name].js'  // Creates separate folders for each entry
 
   },
   module: {
