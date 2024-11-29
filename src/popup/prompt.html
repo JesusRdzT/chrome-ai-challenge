@@ -20,10 +20,11 @@
     <section class="section-container">
       <h2 class="section-title">Prompt</h2>
       <div class="icons-container">
+        <input id="session-name" />
         <button data-tooltip="Translate">
           <img src="icons/translate.png" alt="Translate" class="translate-icon">
         </button>
-        <button data-tooltip="Save">
+        <button id="save-session" data-tooltip="Save">
           <img src="icons/bookmark.png" alt="Save" class="bookmark-icon">
         </button>
       </div>
@@ -32,10 +33,10 @@
     <main class="main-container">
       <div id="chat" class="chat-container"></div>
       <div id="prompt-input-section" class="prompt-input-container">
-        <form id="prompt-input-form" class="prompt-input-form">
+        <form id="prompt-form" class="prompt-input-form">
           <input
             type="text"
-            id="prompt-input"
+            id="promptInput"
             class="prompt-input"
             placeholder="Enter text to prompt"
           />
