@@ -12,15 +12,26 @@
 }
 
 /* Saved Sessions */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .saved-sessions-container {
     padding: 0.5rem;
     overflow-y: auto;
-    max-height: 200px;
+    overflow-x: hidden;
+    max-height: 100px;
     margin-right: 2rem;
 }
 
 .saved-sessions-list {
-    list-style: none;
     padding: 0;
     margin: 0;
     font-size: 0.8rem;
@@ -29,7 +40,21 @@
 
 .saved-session-item {
     padding: 0.3rem 0;
-    border-bottom: 1px solid #eee;
+    background: none;
+    text-align: left;
+    width: 100%;
+    font-size: 0.8rem;
+    color: #555555;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    border-bottom: 1px solid #f0f0f0;
+    font-weight: bold;
+}
+
+.saved-session-item:hover {
+    background-color: white;
+    transform: scale(1.05);
+    color: #2F88FC;
 }
 
 .saved-session-item:last-child {

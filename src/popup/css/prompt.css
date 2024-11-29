@@ -22,13 +22,13 @@ main {
     margin-top: 1rem;
 }
 
-#prompt-input-form {
+.prompt-input-form {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-#prompt-input {
+.prompt-input {
     flex: 1;
     padding: 0.5rem;
     border: 1px solid #ddd;
@@ -36,15 +36,15 @@ main {
     font-size: 0.9rem;
 }
 
-#prompt-input::placeholder {
+.prompt-input::placeholder {
     color: #888888;
 }
 
-#prompt-input:hover {
+.prompt-input:hover {
     border-color: #2F88FC;
 }
 
-#prompt-input-form button {
+.prompt-input-form button {
     background-color: transparent;
     color: #ffffff;
     border: none;
@@ -57,6 +57,23 @@ main {
 
 #prompt-input-form button:hover {
     transform: scale(1.25);
+}
+
+#session-name {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    margin-right: 1rem;
+}
+
+#session-name::placeholder {
+    color: #888888;
+}
+
+#session-name:hover {
+    border-color: #2F88FC;
 }
 
 /* Icons */

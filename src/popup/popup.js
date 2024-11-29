@@ -22,6 +22,7 @@ async function setupPromptSection() {
         anchor.innerText = session.name ?? `Session ${index + 1}`;
 
         const li = document.createElement("li");
+        li.className = "saved-session-item";
         li.appendChild(anchor);
         ul.appendChild(li);
       });
