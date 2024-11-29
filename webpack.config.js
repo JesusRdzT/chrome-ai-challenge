@@ -44,10 +44,10 @@ export default {
       patterns: [
 				{ from: 'src/popup', to: 'popup' },
 				{ from: 'src/icons', to: 'icons' },
-        { from: 'src/manifest.json', to: 'manifest.json' } , // Copy manifest.json to root of dist
+        { from: 'src/manifest.json', to: 'manifest.json' },
 				{ from: 'src/background', to: 'background' },
-				{ from: 'src/content/index.css', to: 'content/index.css' }
-        // { from: 'src/assets', to: 'assets' }                // Copy all assets (like icons) to assets folder
+				{ from: 'src/content/index.css', to: 'content/index.css' },
+        { from: 'src/icons/right-arrow.png', to: 'icons/right-arrow.png' } // Ensure this line is present to copy the icon
       ]
     })
   ],

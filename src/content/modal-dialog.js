@@ -133,11 +133,11 @@ export function showAssistantDialog(context) {
   contextInput.value = context;
   promptForm.appendChild(contextInput);
 
-  const submitBtn = document.createElement("button");
-  submitBtn.innerText = "Submit";
-  submitBtn.type = "submit";
-  submitBtn.classList.add("ext-btn-submit");
-  promptForm.appendChild(submitBtn);
+  const submitIcon = document.createElement("img");
+  submitIcon.src = chrome.runtime.getURL("icons/right-arrow.png");
+  submitIcon.alt = "Submit Icon";
+  submitIcon.classList.add("ext-submit-icon");
+  promptForm.appendChild(submitIcon);
 
   // Append promptForm to promptSection
   promptSection.appendChild(promptForm);

@@ -1,4 +1,4 @@
- {
+{
 	"manifest_version": 3,
 	"name": "Google AI Challenge Extension",
 	"version": "1.0.0",
@@ -43,7 +43,7 @@
   	],
 	"web_accessible_resources": [
 		{
-			"resources": ["index.css", "main.html", "index.js"],
+			"resources": ["index.css", "main.html", "index.js", "icons/right-arrow.png"],
 			"matches": ["<all_urls>"]
 		}
 	]

@@ -3,7 +3,7 @@
 	position: absolute;
 	display: flex;
 	flex-direction: column;
-	width: min(90vw, 300px);
+	width: min(90vw, 300px) !important;
 	padding: 1rem 1.5rem;
 	background: white;
 	border-radius: 0.75rem;
@@ -134,8 +134,6 @@
 }
 
 /* Buttons */
-.ext-btn-submit,
-.ext-btn-primary,
 .ext-btn-secondary {
 	font-size: calc(0.8rem + 0.1vw); 
 	padding: calc(0.4rem + 0.1vw) calc(0.8rem + 0.2vw);
@@ -147,30 +145,19 @@
 	max-width: 100%;
 }
 
-/* Submit button */
-.ext-btn-submit {
-	background-color: #2F88FC;
-	color: #ffffff;
-	border: none;
+.ext-submit-icon{
+	width: 1rem;
+	height: 1rem;
+	animation: transform 0.3s ease;
+	transition: transform 0.3s ease; /* Add transition for hover animation */
 }
 
-.ext-btn-submit:hover {
-	background-color: #ffffff;
-	color: #2F88FC;
-	transform: scale(1.05);
+.ext-submit-icon:hover{
+	transform: scale(1.25);
 }
 
-/* Primary button */
-.ext-btn-primary {
-	background-color: #1EAF4C;
-	color: #ffffff;
-	border: none;
-}
-
-.ext-btn-primary:hover {
-	background-color: #ffffff;
-	color: #1EAF4C;
-	transform: scale(1.05);
+.ext-submit-icon:active {
+	transform: scale(0.9); /* Add click animation */
 }
 
 /* Secondary button */
@@ -184,7 +171,7 @@
 
 .ext-btn-secondary:hover {
 	background-color: #2F88FC !important;
-	color: #ffffff;
+	color: #ffffff !important;
 	transform: scale(1.05);
 }
 

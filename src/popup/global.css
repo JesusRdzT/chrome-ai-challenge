@@ -50,6 +50,15 @@ header {
   color: #ffffff;
 }
 
+.header-button{
+  transition: transform 0.3s ease;
+}
+
+.header-button:hover{
+  transform: scale(1.25);
+  color: #ffffff;
+}
+
  /* Section Styles */
 .section-container {
   display: flex;
@@ -117,6 +126,11 @@ header {
   width: 1rem;
   height: 1rem;
   margin-right: 0.5rem;
+}
+
+.back-icon {
+  width: 1rem;
+  height: 1rem;
 }
 
 .icon-section{
