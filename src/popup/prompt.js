@@ -17,27 +17,51 @@ function disableForm(disabled) {
  */
 function addChatMessage({ id, role, content }) {
   const isError = id.startsWith('error-');
-  // Only show system messages if they are errors
   if (role === 'system' && isError) return null;
 
   const message = document.createElement("div");
+  const title = document.createElement("div");
+  const messageContent = document.createElement("div");
+
   message.classList.add(`${role.trim()}-message`);
   if (isError) message.classList.add("error-message");
-  message.innerHTML = marked(content);
-  message.setAttribute("data-raw-content", content);
+
+  title.classList.add("message-title");
+  title.innerHTML = `<b>${role === 'user' ? 'User' : role === 'assistant' ? 'Gemini Nano' : 'System'}</b>`;
+
+  messageContent.classList.add("message-content");
+  messageContent.innerHTML = marked(content);
+  messageContent.setAttribute("data-raw-content", content);
+
+  message.appendChild(title);
+  message.appendChild(messageContent);
   message.id = id;
 
   const chatSection = document.getElementById("chat");
   chatSection.appendChild(message);
 
+  message.style.opacity = 0;
+  setTimeout(() => {
+    message.style.opacity = 1;
+    message.style.transition = "opacity 0.3s ease-in-out";
+  }, 0);
+
+  chatSection.scrollTop = chatSection.scrollHeight;
+
   return message;
 }
+
 
 function updateChatMessage({ id, content }) {
   const message = document.getElementById(id);
   if (!message) return;
-  message.innerHTML = marked(content);
+
+  const messageContent = message.querySelector(".message-content");
+  if (messageContent) {
+    messageContent.innerHTML = marked(content);
+  }
 }
+
 
 function clearMessages() {
   const chatSection = document.getElementById("chat");
