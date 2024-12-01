@@ -49,7 +49,7 @@ export default class LanguageAssistantModel {
   /** The associated session id */
   #id = null;
   /** The assigned name for the session */
-  name = null;
+  #name = null;
   /** The instance of the Gemini Nano Prompt API */
   #model = window.ai.languageModel;
   #session = null;
@@ -71,7 +71,7 @@ export default class LanguageAssistantModel {
         throw new Error(`Session "${this.#id}" not found`);
       }
 
-      this.name = session.name;
+      this.#name = session.name;
       this.#chat = session.chat;
     }
 
@@ -96,6 +96,18 @@ export default class LanguageAssistantModel {
     return this;
   }
 
+  /** Returns the session name */
+  getName() {
+    return this.#name;
+  }
+
+  /** Sets the session name. Updates it in storage if the session is stored */
+  async setName(name) {
+    this.#name = name;
+    await this.#updateIfStored();
+
+  }
+
   getChat() {
     return this.#chat;
   }
@@ -108,20 +120,28 @@ export default class LanguageAssistantModel {
     const userMessage = sessionMessage('user', content);
     // Waits for 500ms
     await new Promise((resolve) => setTimeout(resolve, 500));
+
     const assistantMessage = sessionMessage('assistant', "...", userMessage.id);
 
     const stream = this.#session.promptStreaming(content)
-    
-    const readStream = async (onChunk) => {
-      for await (const text of stream) {
-        // Updates the referenced object with the new content
-        assistantMessage.content = text;
-        onChunk(assistantMessage);
-      }
 
-      // The chat is only saved when the stream finishes
-      this.#chat.push(userMessage);
-      this.#chat.push(assistantMessage);
+    const readStream = async (onChunk, onError) => {
+      try {
+        for await (const text of stream) {
+          // Updates the referenced object with the new content
+          assistantMessage.content = text;
+          onChunk(assistantMessage);
+        }
+
+        // The chat is only saved when the stream finishes
+        this.#chat.push(userMessage);
+        this.#chat.push(assistantMessage);
+
+        await this.#updateIfStored();
+      } catch (e) {
+        console.error(e);
+        onError(sessionMessage("system", "An error occurred while processing your request", userMessage.id, e));
+      }
     }
 
     return { userMessage, assistantMessage, readStream };
@@ -136,12 +156,14 @@ export default class LanguageAssistantModel {
     const userMessage = sessionMessage('user', content);
 
     const responseTask = this.#session.prompt(content)
-    .then((res) => {
+    .then(async (res) => {
       const msg = sessionMessage('assistant', res, userMessage.id);
 
       // Adds the messages to the chat history
       this.#chat.push(userMessage);
       this.#chat.push(msg);
+
+      await this.#updateIfStored();
 
       return msg;
     })
@@ -169,12 +191,37 @@ export default class LanguageAssistantModel {
     await chrome.storage.sync.set({
       [this.#id]: {
         id: this.#id,
-        name: this.name,
+        name: this.#name,
         chat: this.#chat
       }
     });
   }
 
+  /**
+   * Deletes the session from storage
+   */
+  async deleteFromStorage() {
+    if (!this.#id) return;
+    await chrome.storage.sync.remove(this.#id);
+  }
+
+  /**
+   * Checks if the session is saved in storage
+   */
+  async isSaved() {
+    if (!this.#id) return false;
+    const { [this.#id]: session } = await chrome.storage.sync.get(this.#id);
+    return !!session;
+  }
+
+  /**
+   *  Updates the session if it is saved in storage
+   */
+  async #updateIfStored() {
+    if (await this.isSaved()) {
+      await this.saveToStorage();
+    }
+  }
 
   /**
    * Creates a new language assistant session

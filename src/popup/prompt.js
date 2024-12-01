@@ -17,7 +17,7 @@ function disableForm(disabled) {
  */
 function addChatMessage({ id, role, content }) {
   const isError = id.startsWith('error-');
-  if (role === 'system' && isError) return null;
+  if (role === 'system' && !isError) return null;
 
   const message = document.createElement("div");
   const title = document.createElement("div");
@@ -88,9 +88,13 @@ async function handlePrompt(e) {
   } = await assistant.promptStreaming(promptInput.value);
 
   addChatMessage(userMessage);
-  addChatMessage(assistantMessage);
+  const message = addChatMessage(assistantMessage);
 
-  await readStream(updateChatMessage);
+  await readStream(updateChatMessage, (e) => {
+    message.remove();
+    console.log("error message", e);
+    addChatMessage(e);
+  });
 
   form.reset();
 
@@ -98,33 +102,33 @@ async function handlePrompt(e) {
 }
 
 async function saveSession() {
+  const buttonIcon = document.getElementById("bookmark-icon");
   if (!assistant) return;
-  disableForm(true);
-  await assistant.saveToStorage();
-  disableForm(false);
+  if (await assistant.isSaved()) {
+    await assistant.deleteFromStorage();
+    buttonIcon.src = "icons/mark.png";
+  } else {
+    await assistant.saveToStorage();
+    buttonIcon.src = "icons/bookmark.png";
+  }
 }
 
 async function handleNameInput(e) {
   if (!assistant) return;
-  assistant.name = e.target.value;
+  await assistant.setName(e.target.value);
 }
 
 async function loadStoredSession(sessionId) {
-  console.log("loading session", sessionId);
   if (!sessionId) return;
 
   disableForm(true);
 
   try {
     assistant = await LanguageAssistantModel.Load(sessionId);
-    
     clearMessages();
-
-    for (const message of assistant.getChat()) {
-      addChatMessage(message);
-    }
-
-    document.getElementById("session-name").value = assistant.name;
+    assistant.getChat().forEach(addChatMessage);
+    document.getElementById("session-name").value = assistant.getName();
+    document.getElementById("bookmark-icon").src = "icons/bookmark.png";
   } catch(e) {
     console.log("could not load session", e);
   }
