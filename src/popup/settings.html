@@ -14,6 +14,54 @@
       <h1 class="header-title2">Settings</h1>
     </header>
 
+    <section id="translator-settings" class="section-container">
+      <h2>Prompt</h2>
+      <form id="prompt-settings-form" class="form-container">
+        <span id="status" class="status-message"></span>
+        <div class="form-field">
+          <label for="topK">Top K</label>
+          <input
+            type="range"
+            id="topK"
+            name="topK"
+            class="form-input"
+            min="1"
+            max="10"
+            step="1"
+          />
+        </div>
+        <div class="form-field">
+          <label for="temperature">Temperature</label>
+          <input
+            type="range"
+            id="temperature"
+            name="temperature"
+            class="form-input"
+            min="0.1"
+            max="1"
+            step="0.1"
+          />
+        </div>
+        <button type="submit" class="form-button">Save</button>
+      </form>
+    </section>
+
+    <section id="translator-settings" class="section-container">
+      <h2 class="section-title">Translator</h2>
+
+      <form id="translator-settings-form" class="form-container">
+        <span id="status" class="status-message"></span>
+
+        <div class="form-field">
+          <label for="targetLanguage" class="form-label">Default translate language</label>
+          <select id="targetLanguage" name="targetLanguage" class="form-select"></select>
+        </div>
+
+        <button type="submit" class="form-button">Save</button>
+      </form>
+
+    </section>
+
     <section id="reader-settings" class="section-container">
       <h2 class="section-title">Text reader</h2>
       <form id="reader-settings-form" class="form-container">

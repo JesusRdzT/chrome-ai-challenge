@@ -1,22 +1,4 @@
-const LANG_CODES = [
-  "es",
-  "ar",
-  "fr",
-  "ko",
-  "ru",
-  "zh",
-  "bn",
-  "hi",
-  "nl",
-  "th",
-  "zh-Hant",
-  "de",
-  "it",
-  "pl",
-  "tr",
-  "pt",
-  "vi"
-];
+import LANG_CODES from '../constants/languages.js';
 
 const langName = new Intl.DisplayNames(["en"], { type: "language" });
 let translator = null;
@@ -30,6 +12,7 @@ function setLanguageOptions(selectElement, options) {
     const optionElement = document.createElement("option");
     optionElement.value = option;
     optionElement.textContent = langName.of(option);
+    optionElement.selected = option === languagePair[selectElement.id];
     selectElement.appendChild(optionElement);
   });
 }
@@ -37,11 +20,10 @@ function setLanguageOptions(selectElement, options) {
 async function prepareTranslator() {
   console.log("new lang pair", languagePair);
   const canTranslate = await window.translation.canTranslate(languagePair);
+  if (canTranslate === "no") return;
 
-  if (canTranslate !== "no") {
-    translator = await window.translation.createTranslator(languagePair);
-    await window.translation.ready;
-  }
+  translator = await window.translation.createTranslator(languagePair);
+  await window.translation.ready;
 }
 
 async function changeLanguage(e) {
@@ -61,6 +43,8 @@ async function changeLanguage(e) {
 async function swapLanguages() {
   const sourceSelect = document.getElementById("sourceLanguage");
   const targetSelect = document.getElementById("targetLanguage");
+  const sourceTextArea = document.getElementById("sourceLanguageTextArea");
+  const targetTextArea = document.getElementById("targetLanguageTextArea");
 
   const sourceValue = sourceSelect.value;
   const targetValue = targetSelect.value;
@@ -71,9 +55,6 @@ async function swapLanguages() {
 
   sourceSelect.value = targetValue;
   targetSelect.value = sourceValue;
-
-  const sourceTextArea = document.getElementById("sourceLanguageTextArea");
-  const targetTextArea = document.getElementById("targetLanguageTextArea");
 
   const sourcePlaceholder = sourceTextArea.placeholder;
   sourceTextArea.placeholder = targetTextArea.placeholder;
@@ -101,6 +82,10 @@ async function setup() {
   const swapButton = document.getElementById("swap-button");
   const sourceTextArea = document.getElementById("sourceLanguageTextArea");
 
+  const { translatorSettings } = await chrome.storage.sync.get("translatorSettings");
+  if (translatorSettings) {
+    languagePair.targetLanguage = translatorSettings.targetLanguage;
+  }
 
   setLanguageOptions(sourceSelect, ["en"]);
   setLanguageOptions(targetSelect, LANG_CODES);
@@ -109,7 +94,6 @@ async function setup() {
   targetSelect.addEventListener("change", changeLanguage);
   swapButton.addEventListener("click", swapLanguages);
   sourceTextArea.addEventListener("input", onTargetInput);
-
 
   await prepareTranslator();
 }

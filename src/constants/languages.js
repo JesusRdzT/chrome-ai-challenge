@@ -1,0 +1,19 @@
+export default [
+  "es",
+  "ar",
+  "fr",
+  "ko",
+  "ru",
+  "zh",
+  "bn",
+  "hi",
+  "nl",
+  "th",
+  "zh-Hant",
+  "de",
+  "it",
+  "pl",
+  "tr",
+  "pt",
+  "vi"
+];
