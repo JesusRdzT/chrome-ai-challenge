@@ -75,6 +75,16 @@ export default class LanguageAssistantModel {
       this.#chat = session.chat;
     }
 
+    try {
+      const { promptSettings } = await chrome.storage.sync.get('promptSettings');
+      this.#SYSTEM_TEMPERATURE = promptSettings.temperature;
+      this.#SYSTEM_TOP_K = promptSettings.topK;
+
+      console.log("Settings - topk:", this.#SYSTEM_TOP_K, "  temp:", this.#SYSTEM_TEMPERATURE);
+    } catch(e) {
+      console.log("Error fetching storage data:", e);
+    }
+
 
     this.#session = await this.#model.create({
       systemPrompt: this.#SHARED_CONTEXT,
