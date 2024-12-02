@@ -30,25 +30,33 @@ The following functionalities outline the interactions users can perform to expl
 - The *Define and Example* options open a prompt window with the selected word, sending it directly to the Gemini model. The model responds based on the selected word and its context.
 - The user can directly type any prompt from this modal, opening the prompt window for easier chatting.
 ### Extension Pop-up (This is the main experience)
+#### Translator
 - The extension popup includes a Translator that supports only the following language translations:
-| Source Language | Target Language | Language Name         |
-|------------------|-----------------|-----------------------|
-| en              | es              | Spanish              |
-| en              | ar              | Arabic               |
-| en              | fr              | French               |
-| en              | ko              | Korean               |
-| en              | ru              | Russian              |
-| en              | zh              | Chinese - Simplified |
-| en              | bn              | Bengali              |
-| en              | hi              | Hindi                |
-| en              | nl              | Dutch                |
-| en              | th              | Thai                 |
-| en              | zh-Hant         | Chinese - Traditional|
-| en              | de              | German               |
-| en              | it              | Italian              |
-| en              | pl              | Polish               |
-| en              | tr              | Turkish              |
-| en              | pt              | Portuguese           |
-| en              | vi              | Vietnamese           |
-- 
+en -> es (Spanish)
+en -> ar (Arabic)
+en -> fr (French)
+en -> ko (Korean)
+en -> ru (Russian)
+en -> zh (Chinese - Simplified)
+en -> bn (Bengali)
+en -> hi (Hindi)
+en -> nl (Dutch)
+en -> th (Thai)
+en -> zh-Hant (Chinese - Traditional)
+en -> de (German)
+en -> it (Italian)
+en -> pl (Polish)
+en -> tr (Turkish)
+en -> pt (Portuguese)
+en -> vi (Vietnamese)
+#### Story Teller
+- The storyteller provides the model with a prompt about a word or phrase, and the model generates a story based on that input.
+#### Prompt
+- Users can chat directly with the model and save their sessions in a list displayed within the main interface.
+- The prompt section can also be automatically opened and pre-filled via the Dialog Modal by interacting with any option.
+#### Settings
+- Users can adjust settings for text-to-speech voice, modify model parameters, and set a default translation language.
+
+## Content
+In this section, we will outline the files in the repository and explain their primary purposes.
 
