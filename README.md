@@ -85,6 +85,8 @@ In this section, we will outline the files in the repository and explain their p
 - This file manages the language translation interface. It initializes language options, dynamically updates translation settings, and handles interactions such as swapping source and target languages or translating input in real time. It uses Intl.DisplayNames for displaying language names, supports translator creation and readiness checks, and updates placeholders and text areas based on user input or language swaps. The system initializes upon page load, ensuring translation functionality is ready.
 
 ## Advantages and scalability
+This project utilizes and evaluates the Gemini Nano model within a browser environment, aiming to provide seamless user navigation and an intuitive understanding of web content. The extension facilitates real-time language translation, learning, and interaction with the model, eliminating the need for typing or other less efficient input methods.
 
+The project has potential for scalability, offering additional functionalities by leveraging the model. For instance, integrating a computer vision system could analyze the browser interface and provide on-demand pop-ups to assist users across various Google services, such as Google Cloud, Drive, and others. This data could then be converted to text and fed into Gemini Nano for enhanced interaction and guidance.
   
 
