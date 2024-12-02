@@ -1,6 +1,16 @@
 import StorytellerModel from "../content/storyteller-model.js";
 import { marked } from 'marked';
 
+function showLoader() {
+  const loader = document.getElementById("loader");
+  if (loader) loader.style.display = "block";
+}
+
+function hideLoader() {
+  const loader = document.getElementById("loader");
+  if (loader) loader.style.display = "none";
+}
+
 let model = null;
 
 function disableForm(disabled) {
@@ -37,9 +47,11 @@ async function generateStory(e) {
     if (!prompt) return;
 
     disableForm(true);
+    showLoader();
 
     const generatedStory = await model.generateStory(prompt);
 
+    hideLoader();
     disableForm(false);
     e.target.reset();
 
@@ -58,6 +70,7 @@ async function generateStory(e) {
       storyContent.innerHTML = marked(generatedStory); 
     }
   } catch (error) {
+    hideLoader();
     disableForm(false);
     console.error(error);
 
@@ -67,6 +80,7 @@ async function generateStory(e) {
     }
   }
 }
+
 
 window.addEventListener("load", async () => {
   try {
