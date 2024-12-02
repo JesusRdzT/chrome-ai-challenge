@@ -84,5 +84,7 @@ In this section, we will outline the files in the repository and explain their p
 #### popup -> translator.js
 - This file manages the language translation interface. It initializes language options, dynamically updates translation settings, and handles interactions such as swapping source and target languages or translating input in real time. It uses Intl.DisplayNames for displaying language names, supports translator creation and readiness checks, and updates placeholders and text areas based on user input or language swaps. The system initializes upon page load, ensuring translation functionality is ready.
 
+## Advanatages and scalability
+
   
 
