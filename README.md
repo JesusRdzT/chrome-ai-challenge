@@ -77,11 +77,11 @@ In this section, we will outline the files in the repository and explain their p
 ### Popup folder
 #### popup -> popup.js
 - This file handles displaying and managing saved sessions and the overall (Main Experience). It includes a message listener for debugging, a deleteSession function to remove sessions from storage, and setupPromptSection to dynamically list saved sessions with options to reopen or delete them, initializing the list on page load.
-### popup -> prompt.js
+#### popup -> prompt.js
 - This file manages a chat-based interface, facilitating interactions with a language assistant. It supports real-time messaging, session management (saving, loading, and deleting sessions), and dynamic UI updates. It initializes with URL parameters for preloading sessions or automatic prompts and listens for runtime messages to handle context-based interactions.
-### popup -> settings.js
+#### popup -> settings.js
 - This file manages the configuration and initialization of settings for the extension, including Text-to-Speech (TTS), translation, and prompt options. It dynamically loads saved settings from storage, populates forms with those values, and updates them upon submission. Additionally, it handles TTS voice testing, dynamically populates language and voice selection dropdowns, and provides user feedback for saving changes. Each settings section (Reader, Translator, and Prompt) is initialized during the page load.
-### popup -> translator.js
+#### popup -> translator.js
 - This file manages the language translation interface. It initializes language options, dynamically updates translation settings, and handles interactions such as swapping source and target languages or translating input in real time. It uses Intl.DisplayNames for displaying language names, supports translator creation and readiness checks, and updates placeholders and text areas based on user input or language swaps. The system initializes upon page load, ensuring translation functionality is ready.
 
   
