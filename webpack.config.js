@@ -39,11 +39,6 @@ export default {
       chunks: ['options']
     }),
 		*/
-    new HtmlWebpackPlugin({
-      filename: 'popup/prompt.html',
-      template: './src/popup/prompt.html',
-      chunks: ['popup/prompt']
-    }),
     // Copy static assets like manifest.json and icons
     new CopyPlugin({
       patterns: [
@@ -52,7 +47,7 @@ export default {
         { from: 'src/manifest.json', to: 'manifest.json' },
 				{ from: 'src/background', to: 'background' },
 				{ from: 'src/content/index.css', to: 'content/index.css' },
-        { from: 'src/icons/right-arrow.png', to: 'icons/right-arrow.png' } // Ensure this line is present to copy the icon
+        { from: 'src/icons/right-arrow.png', to: 'icons/right-arrow.png' }
       ]
     })
   ],

@@ -6,36 +6,50 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   document.body.appendChild(code);
 });
 
+async function deleteSession(sessionId) {
+  try {
+    await chrome.storage.sync.remove(sessionId);
+    alert(`Session "${sessionId}" has been deleted.`);
+    setupPromptSection();
+  } catch (e) {
+    console.error("Error deleting session:", e);
+    alert("An error occurred while deleting the session.");
+  }
+}
+
 async function setupPromptSection() {
   try {
-    const sessions = await getSavedSessions()// TODO: Get from storage
+    const sessions = await getSavedSessions();
     const savedSessionsList = document.getElementById("saved-sessions-list");
     savedSessionsList.innerHTML = "";
 
     if (sessions.length > 0) {
-      const ul = document.createElement("ul");
-      ul.id = "saved-sessiones-list";
-
       sessions.forEach((session, index) => {
+        const li = document.createElement("li");
+        li.className = "saved-session-item";
+
         const anchor = document.createElement("a");
         anchor.href = `prompt.html?session=${session.id}`;
         anchor.innerText = session.name ?? `Session ${index + 1}`;
-
-        const li = document.createElement("li");
-        li.className = "saved-session-item";
+        anchor.className = "session-link";
         li.appendChild(anchor);
-        ul.appendChild(li);
+
+        const deleteButton = document.createElement("button");
+        deleteButton.innerText = "Delete";
+        deleteButton.className = "delete-session-button";
+        deleteButton.style.marginLeft = "10px"; 
+        deleteButton.addEventListener("click", () => deleteSession(session.id));
+        li.appendChild(deleteButton);
+
+        savedSessionsList.appendChild(li);
       });
-
-      savedSessionsList.appendChild(ul);
-
     } else {
-      const p = document.createElement("p");
-      p.innerText = "No sessions found";
-      savedSessionsList.appendChild(p);
+      const noSessionsMessage = document.createElement("p");
+      noSessionsMessage.innerText = "No sessions found";
+      savedSessionsList.appendChild(noSessionsMessage);
     }
   } catch (e) {
-    console.log(e);
+    console.error("Error setting up prompt section:", e);
   }
 }
 
