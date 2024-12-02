@@ -5,49 +5,67 @@ let model = null;
 
 function disableForm(disabled) {
   const form = document.getElementById("story-form");
-  for (const el of form.elements) { el.disabled = disabled; }
+  if (form) {
+    for (const el of form.elements) {
+      el.disabled = disabled;
+    }
+  }
 }
 
 function createNewStory() {
   const storySection = document.getElementById("story-section");
-  storySection.querySelector("#story-content").innerHTML = "";
-  storySection.style.display = "none";
+  if (storySection) {
+    const storyContent = storySection.querySelector("#story-content");
+    if (storyContent) storyContent.innerHTML = "";
+    storySection.style.display = "none"; 
+  }
 
-  const prompt = document.getElementById("prompt-section");
-  prompt.style.display = "block";
+  const promptInputSection = document.getElementById("prompt-input-section");
+  if (promptInputSection) {
+    promptInputSection.style.display = "block"; 
+  }
 }
 
 async function generateStory(e) {
   e.preventDefault();
 
   try {
-    const { story } = e.target.elements;
-    const prompt = story.value;
+    const { storyInput } = e.target.elements;
+    if (!storyInput) return;
+
+    const prompt = storyInput.value.trim();
+    if (!prompt) return;
 
     disableForm(true);
 
-    const generatedStory = await model.generateStory(story.value);
+    const generatedStory = await model.generateStory(prompt);
 
     disableForm(false);
     e.target.reset();
 
-    const promptSection = document.getElementById("prompt-section");
-    promptSection.style.display = "none";
+    const promptInputSection = document.getElementById("prompt-input-section");
+    if (promptInputSection) {
+      promptInputSection.style.display = "none";
+    }
 
     const storySection = document.getElementById("story-section");
-    storySection.style.display = "block";
+    if (storySection) {
+      storySection.style.display = "flex";
+    }
 
     const storyContent = document.getElementById("story-content");
-    storyContent.innerHTML = marked(generatedStory);
-  } catch (e) {
+    if (storyContent) {
+      storyContent.innerHTML = marked(generatedStory); 
+    }
+  } catch (error) {
     disableForm(false);
-
-    console.log(e);
+    console.error(error);
 
     const status = document.querySelector("#story-form #status");
-    status.innerHTML = "An error occurred while generating the story. Try again";
+    if (status) {
+      status.textContent = "An error occurred while generating the story. Try again.";
+    }
   }
-
 }
 
 window.addEventListener("load", async () => {
@@ -55,11 +73,15 @@ window.addEventListener("load", async () => {
     model = await StorytellerModel.Create();
 
     const form = document.getElementById("story-form");
-    form.addEventListener("submit", generateStory);
+    if (form) {
+      form.addEventListener("submit", generateStory);
+    }
 
-    const button = document.getElementById("new-story");
-    button.addEventListener("click", createNewStory)
-  } catch (e) {
-    console.error(e);
+    const newStoryButton = document.getElementById("new-story");
+    if (newStoryButton) {
+      newStoryButton.addEventListener("click", createNewStory);
+    }
+  } catch (error) {
+    console.error("Failed to initialize StorytellerModel:", error);
   }
 });
