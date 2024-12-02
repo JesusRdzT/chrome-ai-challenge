@@ -9,7 +9,8 @@ export default {
     'popup/translator': './src/popup/translator.js',
     'popup/popup': './src/popup/popup.js',
     'popup/settings': './src/popup/settings.js',
-    'popup/prompt': './src/popup/prompt.js'
+    'popup/prompt': './src/popup/prompt.js',
+    'popup/storyteller': './src/popup/storyteller.js'
   },
   output: {
     path: path.resolve('dist'),
