@@ -11,7 +11,7 @@ This project is designed to provide instant answers and translations directly fr
 
 ## Installation:
 To install this file to run locally we we first need to:
-- Follow instalation the steps in [Built-in AI Early Preview Program - Welcome and heads-up about the Prompt API - Update #1
+- Follow the setup steps in [Built-in AI Early Preview Program - Welcome and heads-up about the Prompt API - Update #1
 ](https://docs.google.com/document/d/1VG8HIyz361zGduWgNG7R_R8Xkv0OOJ8b5C9QKeCjU0c/edit?tab=t.0)
 - Download and install [Node.js](https://nodejs.org/en) to get the required packages/dependencies. 
 - The user must navigate to the main folder *chrome-ai-challenge* given by this repository.
