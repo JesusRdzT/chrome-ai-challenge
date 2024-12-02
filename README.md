@@ -17,7 +17,7 @@ To install this file to run locally we we first need to:
 - The user must navigate to the main folder **chrome-ai-challenge** given by this repository.
 - Type **npm install -D webpack-cli** in the console.
 - Type **npx weback** to bundle all the files.
-- Open Google Chrome Dev and navigate to *manage extensions*.
+- Open Google Chrome Dev and navigate to **manage extensions**.
 - Click on **Load unpacked** in the top left corner.
 - Select the **Dist folder** to add the extension to your browser.
 - To visualize updates in realtime you can type **npx webpack --watch** on the console.
