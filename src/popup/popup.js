@@ -34,12 +34,12 @@ async function setupPromptSection() {
         anchor.className = "session-link";
         li.appendChild(anchor);
 
-        const deleteButton = document.createElement("button");
-        deleteButton.innerText = "Delete";
-        deleteButton.className = "delete-session-button";
-        deleteButton.style.marginLeft = "10px"; 
-        deleteButton.addEventListener("click", () => deleteSession(session.id));
-        li.appendChild(deleteButton);
+        const deleteIcon = document.createElement("img");
+        deleteIcon.src = "icons/delete.png";
+        deleteIcon.alt = "Delete session";
+        deleteIcon.className = "delete-session-icon"; 
+        deleteIcon.addEventListener("click", () => deleteSession(session.id));
+        li.appendChild(deleteIcon);
 
         savedSessionsList.appendChild(li);
       });

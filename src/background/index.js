@@ -74,16 +74,19 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "prompt") {
-    const { prompt, context } = message;
+    const { prompt, context, modal } = message;
 
     chrome.storage.local.set({ prompt, context }, () => {
-      chrome.action.setPopup({ popup: "popup/prompt.html" }, () => {
+      const popupUrl = modal ? "popup/prompt.html?modal=true" : "popup/prompt.html";
+
+      chrome.action.setPopup({ popup: popupUrl }, () => {
         chrome.action.openPopup();
-        chrome.action.setPopup({ popup: "popup/main.html" });
+        chrome.action.setPopup({ popup: "popup/main.html" }); // Reset to default after opening
       });
     });
   }
 });
+
 
 
 

@@ -164,12 +164,21 @@ async function setup() {
   const saveButton = document.getElementById("save-session");
   const nameInput = document.getElementById("session-name");
 
-  chrome.storage.local.get(["prompt", "context"], async ({ prompt, context }) => {
-    if (prompt) {
-      await autoSendPrompt(prompt, context);
-    }
-  });
+  const urlParams = new URLSearchParams(window.location.search);
+  const sessionId = urlParams.get("session");
+  const isModal = urlParams.get("modal") === "true";
 
+  if (sessionId) {
+    await loadStoredSession(sessionId);
+  } else if (isModal) {
+    chrome.storage.local.get(["prompt", "context"], async ({ prompt, context }) => {
+      if (prompt) {
+        await autoSendPrompt(prompt, context);
+      }
+    });
+  }
+
+  // Set up event listeners
   form.removeEventListener("submit", handlePrompt);
   form.addEventListener("submit", handlePrompt);
 
@@ -179,6 +188,7 @@ async function setup() {
   nameInput.removeEventListener("input", handleNameInput);
   nameInput.addEventListener("input", handleNameInput);
 }
+
 
 
 async function autoSendPrompt(prompt, context) {

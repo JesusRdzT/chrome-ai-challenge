@@ -73,3 +73,17 @@ a {
 .saved-sessions-container::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+/* Icons Styles */
+
+.delete-session-icon {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    margin-left: 16rem;
+  }
+  
+  .delete-session-icon:hover {
+    transform: scale(1.1);
+  }

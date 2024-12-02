@@ -51,9 +51,11 @@ function performAction({ action, context }) {
       action: "prompt",
       prompt,
       context,
+      modal: true,
     });
   }
 }
+
 
 export function showAssistantDialog(context) {
   document.querySelector(".ext-dialog-box")?.remove();
