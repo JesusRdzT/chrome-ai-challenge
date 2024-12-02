@@ -22,11 +22,13 @@ const TRIGGER_OPTIONS = {
 // Sends a message to open the main dialog when the prompt form is submitted.
 function handlePromptSubmit(e) {
   e.preventDefault();
+
   const prompt = e.target.elements.prompt?.value;
   const context = e.target.elements.context?.value;
 
   if (!prompt) return;
 
+  // Send the prompt and context
   chrome.runtime.sendMessage({
     action: "prompt",
     prompt,
@@ -34,12 +36,23 @@ function handlePromptSubmit(e) {
   });
 }
 
+
 // Sends a message to the main dialog when a quick action is clicked.
 function performAction({ action, context }) {
-  chrome.runtime.sendMessage({
-    action,
-    context,
-  });
+  let prompt;
+  if (action === "define") {
+    prompt = `Define this: ${context}`;
+  } else if (action === "example") {
+    prompt = `Give me an example of: ${context}`;
+  }
+
+  if (prompt) {
+    chrome.runtime.sendMessage({
+      action: "prompt",
+      prompt,
+      context,
+    });
+  }
 }
 
 export function showAssistantDialog(context) {
@@ -137,6 +150,12 @@ export function showAssistantDialog(context) {
   submitIcon.src = chrome.runtime.getURL("icons/right-arrow.png");
   submitIcon.alt = "Submit Icon";
   submitIcon.classList.add("ext-submit-icon");
+
+  submitIcon.onclick = (e) => {
+    e.preventDefault(); 
+    handlePromptSubmit({ target: promptForm, preventDefault: () => {} });
+  };
+
   promptForm.appendChild(submitIcon);
 
   // Append promptForm to promptSection

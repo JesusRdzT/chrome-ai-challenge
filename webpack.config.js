@@ -39,6 +39,11 @@ export default {
       chunks: ['options']
     }),
 		*/
+    new HtmlWebpackPlugin({
+      filename: 'popup/prompt.html',
+      template: './src/popup/prompt.html',
+      chunks: ['popup/prompt']
+    }),
     // Copy static assets like manifest.json and icons
     new CopyPlugin({
       patterns: [

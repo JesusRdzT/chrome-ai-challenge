@@ -66,9 +66,25 @@ function injectHotkeyListener() {
   });
 }
 
-// Listen for messages and forward to content script
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "showContextDialog" && sender.tab) {
     chrome.tabs.sendMessage(sender.tab.id, message);
   }
 });
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === "prompt") {
+    const { prompt, context } = message;
+
+    chrome.storage.local.set({ prompt, context }, () => {
+      chrome.action.setPopup({ popup: "popup/prompt.html" }, () => {
+        chrome.action.openPopup();
+        chrome.action.setPopup({ popup: "popup/main.html" });
+      });
+    });
+  }
+});
+
+
+
+

@@ -154,24 +154,54 @@ chrome.runtime.onMessage.addListener((message) => {
   }
 });
 
+let isSetupComplete = false; 
+
 async function setup() {
+  if (isSetupComplete) return;
+  isSetupComplete = true;
+
   const form = document.getElementById("prompt-form");
-  const promptInput = document.getElementById("promptInput");
   const saveButton = document.getElementById("save-session");
   const nameInput = document.getElementById("session-name");
 
-  // Sets the event handlers
-  form.onsubmit = handlePrompt;
-  saveButton.onclick = saveSession;
-  nameInput.oninput = handleNameInput;
+  chrome.storage.local.get(["prompt", "context"], async ({ prompt, context }) => {
+    if (prompt) {
+      await autoSendPrompt(prompt, context);
+    }
+  });
 
-  // Loads a session if the session param is present
-  const urlParams = new URLSearchParams(window.location.search);
-  const sessionId = urlParams.get('session');
-  if (sessionId) await loadStoredSession(sessionId);
+  form.removeEventListener("submit", handlePrompt);
+  form.addEventListener("submit", handlePrompt);
 
-  // Focus the prompt input
-  promptInput.focus();
+  saveButton.removeEventListener("click", saveSession);
+  saveButton.addEventListener("click", saveSession);
+
+  nameInput.removeEventListener("input", handleNameInput);
+  nameInput.addEventListener("input", handleNameInput);
 }
 
-window.addEventListener('load', setup);
+
+async function autoSendPrompt(prompt, context) {
+  if (!prompt) return;
+
+  disableForm(true);
+
+  if (!assistant) {
+    assistant = await LanguageAssistantModel.Create();
+  }
+
+  const { userMessage, assistantMessage, readStream } = await assistant.promptStreaming(prompt);
+
+  addChatMessage({ ...userMessage, context });
+  const message = addChatMessage({ ...assistantMessage, context });
+
+  await readStream(updateChatMessage, (e) => {
+    message.remove();
+    addChatMessage(e);
+  });
+
+  disableForm(false);
+}
+
+
+window.addEventListener("load", setup);

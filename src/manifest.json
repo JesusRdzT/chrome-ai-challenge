@@ -43,7 +43,15 @@
   	],
 	"web_accessible_resources": [
 		{
-			"resources": ["index.css", "main.html", "index.js", "icons/right-arrow.png"],
+			"resources": [
+				"index.css",
+				"main.html",
+				"prompt.html",
+				"index.js",
+				"icons/right-arrow.png",
+				"css/prompt.css",
+				"icons/*"
+			],
 			"matches": ["<all_urls>"]
 		}
 	]
