@@ -72,7 +72,7 @@ In this section, we will outline the files in the repository and explain their p
 - This file serves as a listener for Chrome extension messages and facilitates the display of an assistant dialog.
 #### content -> modal-dialog.js
 - This file manages the creation and interaction of an Assistant Dialog Box, allowing users to perform actions like defining words or generating examples for selected text. It dynamically constructs the dialog UI, positions it near the selected text using bounding rectangle calculations, and enables interactions through predefined actions or custom prompts.
-#### content -> speech - synthesis
+#### content -> speech-synthesis.js
 - This file defines a TextReader class for managing text-to-speech functionality using Chrome's TTS API. It includes customizable settings for rate, pitch, and voice name. The setSettings method updates these settings, while the speak method reads text aloud with optional event and finish callbacks.
 ### Popup folder
 #### popup -> popup.js
