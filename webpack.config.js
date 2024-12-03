@@ -5,7 +5,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 export default {
   mode: 'production',
   entry: {
-    'content/content': './src/content/index.js',
+    'content/index': './src/content/index.js',
     'popup/translator': './src/popup/translator.js',
     'popup/popup': './src/popup/popup.js',
     'popup/settings': './src/popup/settings.js',
@@ -27,20 +27,7 @@ export default {
     ]
   },
   plugins: [
-    // Process HTML files for popup and options pages
-		/*
-    new HtmlWebpackPlugin({
-      filename: 'popup/popup.html',
-      template: './src/popup/popup.html',
-      chunks: ['popup']
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'options/options.html',
-      template: './src/options/options.html',
-      chunks: ['options']
-    }),
-		*/
-    // Copy static assets like manifest.json and icons
+	  // Copy static assets like manifest.json and icons
     new CopyPlugin({
       patterns: [
 				{ from: 'src/popup', to: 'popup' },

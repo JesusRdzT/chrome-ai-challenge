@@ -22,9 +22,7 @@
 	"content_scripts": [
 		{
 			"matches": ["https://*/*", "http://*/*"],
-			"css": ["content/index.css"],
-			"js": [
-			 ]
+			"js": ["content/index.js"]
 		}
 	],
 	"permissions": [

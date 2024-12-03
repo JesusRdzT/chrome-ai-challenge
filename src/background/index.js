@@ -1,4 +1,4 @@
-import '../content/content.js';
+import '../content/index.js';
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
