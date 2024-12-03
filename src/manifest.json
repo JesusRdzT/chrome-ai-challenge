@@ -24,7 +24,6 @@
 			"matches": ["https://*/*", "http://*/*"],
 			"css": ["content/index.css"],
 			"js": [
-				 "content/content.js"
 			 ]
 		}
 	],

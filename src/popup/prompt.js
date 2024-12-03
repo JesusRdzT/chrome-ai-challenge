@@ -136,23 +136,7 @@ async function loadStoredSession(sessionId) {
   disableForm(false);
 }
 
-chrome.runtime.onMessage.addListener((message) => {
-  const { action, context, sessionId } = message;
 
-  switch (action) {
-    case 'loadSession': {
-      window.location.search = `?session=${sessionId}`;
-      setup();
-      break;
-    }
-    case 'newSessionWithContext': {
-      if (!context) return;
-
-      break;
-    }
-    default: break;
-  }
-});
 
 let isSetupComplete = false; 
 
@@ -164,54 +148,50 @@ async function setup() {
   const saveButton = document.getElementById("save-session");
   const nameInput = document.getElementById("session-name");
 
+  // Set up event listeners
+  form.addEventListener("submit", handlePrompt);
+  saveButton.addEventListener("click", saveSession);
+  nameInput.addEventListener("input", handleNameInput);
+  
   const urlParams = new URLSearchParams(window.location.search);
   const sessionId = urlParams.get("session");
-  const isModal = urlParams.get("modal") === "true";
+  const context = urlParams.get("context");
 
   if (sessionId) {
     await loadStoredSession(sessionId);
-  } else if (isModal) {
-    chrome.storage.local.get(["prompt", "context"], async ({ prompt, context }) => {
-      if (prompt) {
-        await autoSendPrompt(prompt, context);
-      }
-    });
+  } else if (context) {
+    const prompt = urlParams.get("prompt");
+    startContextSession(context, prompt);
   }
-
-  // Set up event listeners
-  form.removeEventListener("submit", handlePrompt);
-  form.addEventListener("submit", handlePrompt);
-
-  saveButton.removeEventListener("click", saveSession);
-  saveButton.addEventListener("click", saveSession);
-
-  nameInput.removeEventListener("input", handleNameInput);
-  nameInput.addEventListener("input", handleNameInput);
 }
 
-
-
-async function autoSendPrompt(prompt, context) {
-  if (!prompt) return;
-
-  disableForm(true);
-
-  if (!assistant) {
-    assistant = await LanguageAssistantModel.Create();
-  }
-
-  const { userMessage, assistantMessage, readStream } = await assistant.promptStreaming(prompt);
-
-  addChatMessage({ ...userMessage, context });
-  const message = addChatMessage({ ...assistantMessage, context });
-
-  await readStream(updateChatMessage, (e) => {
-    message.remove();
-    addChatMessage(e);
-  });
-
-  disableForm(false);
+async function startContextSession(context, prompt) {
+  if (!context || !prompt) return;
+  const form = document.getElementById("prompt-form");
+  const { promptInput } = form.elements;
+  promptInput.value = prompt;
+  form.requestSubmit();
 }
 
+chrome.runtime.onMessage.addListener((message) => {
+  const { action } = message;
+
+  switch (action) {
+    case 'loadSession': {
+      const { sessionId } = message;
+      window.location.search = `?session=${sessionId}`;
+      break;
+    }
+    case 'newSessionWithContext': {
+      const { context, prompt } = message;
+      if (!context || !prompt) return;
+
+      window.location.search = `?modal=true&context=${context}&prompt=${prompt}`;
+
+      break;
+    }
+    default: break;
+  }
+});
 
 window.addEventListener("load", setup);

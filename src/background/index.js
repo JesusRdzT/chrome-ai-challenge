@@ -8,18 +8,19 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 });
 
+async function openContextOptions(context) {
+  chrome.action.setPopup({ popup: "popup/context-menu.html" });
+  await chrome.action.openPopup();
+  chrome.runtime.sendMessage({
+    action: "contextOptions",
+    context: context,
+  });
+  chrome.action.setPopup({ popup: "popup/main.html" });
+}
+
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
   if (info.selectionText && tab.id) {
-    chrome.tabs.sendMessage(tab.id, {
-      action: "showContextDialog",
-      context: info.selectionText,
-    });
-  }
-});
-
-chrome.action.onClicked.addListener((tab) => {
-  if (tab.id) {
-    chrome.tabs.sendMessage(tab.id, { action: "showMain" });
+    openContextOptions(info.selectionText);
   }
 });
 
@@ -68,26 +69,25 @@ function injectHotkeyListener() {
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "showContextDialog" && sender.tab) {
-    chrome.tabs.sendMessage(sender.tab.id, message);
+    openContextOptions(message.context);
   }
 });
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
   if (message.action === "prompt") {
     const { prompt, context, modal } = message;
 
-    chrome.storage.local.set({ prompt, context }, () => {
-      const popupUrl = modal ? "popup/prompt.html?modal=true" : "popup/prompt.html";
+    chrome.action.setPopup({ popup: 'popup/prompt.html' });
+    await chrome.action.openPopup();
 
-      chrome.action.setPopup({ popup: popupUrl }, () => {
-        chrome.action.openPopup();
-        chrome.action.setPopup({ popup: "popup/main.html" }); // Reset to default after opening
-      });
+    chrome.runtime.sendMessage({
+      action: "newSessionWithContext",
+      prompt,
+      context,
     });
+
+    chrome.action.setPopup({ popup: "popup/main.html" });
   }
+
+  return true;
 });
-
-
-
-
-
