@@ -16,7 +16,7 @@ To install this project to run locally we we first need to:
 - Download and install [Node.js](https://nodejs.org/en) to get the required packages/dependencies. 
 - The user must navigate to the main folder **chrome-ai-challenge** given by this repository.
 - Type **npm install -D webpack-cli** in the console.
-- Type **npx webpack** to bundle all the files.
+- Type **npm run watch** to bundle all the files.
 - Open Google Chrome Dev and navigate to **manage extensions**.
 - Click on **Load unpacked** in the top left corner.
 - Select the **Dist folder** to add the extension to your browser.
