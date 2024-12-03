@@ -1,6 +1,6 @@
 {
 	"manifest_version": 3,
-	"name": "Google AI Challenge Extension",
+	"name": "GemilinGo",
 	"version": "1.0.0",
 	"action": {
 		"default_popup": "popup/main.html",

@@ -3,7 +3,7 @@ import '../content/index.js';
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: "showContextDialog",
-    title: "Open Language Assistant",
+    title: "GemilinGo",
     contexts: ["selection"],
   });
 });
