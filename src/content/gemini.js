@@ -53,13 +53,16 @@ export default class LanguageAssistantModel {
   /** The instance of the Gemini Nano Prompt API */
   #model = window.ai.languageModel;
   #session = null;
+  /** The context for the session */
+  #context = null;
 
   /** @type {SessionMessage[]} */
   #chat = [];
 
 
-  constructor(sessionId) {
+  constructor(sessionId, context = null) {
     this.#id = sessionId;
+    this.#context = context;
   }
 
   async init() {
@@ -73,24 +76,29 @@ export default class LanguageAssistantModel {
 
       this.#name = session.name;
       this.#chat = session.chat;
+      this.#context = session.context;
     }
 
     try {
       const { promptSettings } = await chrome.storage.sync.get('promptSettings');
       this.#SYSTEM_TEMPERATURE = promptSettings?.temperature ?? 1;
       this.#SYSTEM_TOP_K = promptSettings?.topK ?? 8;
-
-      console.log("Settings - topk:", this.#SYSTEM_TOP_K, "  temp:", this.#SYSTEM_TEMPERATURE);
     } catch(e) {
       console.log("Error fetching storage data:", e);
     }
 
+    let systemPrompt = this.#SHARED_CONTEXT;
+    if (this.#context && !this.#id) {
+      // If the session is not stored and has a context, add a system message in the beginning with describing the context of the prompt
+      systemPrompt = systemPrompt + `Base your responses on the context of: ${this.#context}`;
+      this.#chat.push(sessionMessage('system', `Using session context: ${this.#context}`));
+    }
 
     this.#session = await this.#model.create({
-      systemPrompt: this.#SHARED_CONTEXT,
+      systemPrompt: systemPrompt,
       temperature: this.#SYSTEM_TEMPERATURE,
       topK: this.#SYSTEM_TOP_K,
-      initialPrompts: this.#chat 
+      initialPrompts: this.#chat.filter(msg => msg.role !== 'system')
     });
 
     return this;
@@ -192,7 +200,8 @@ export default class LanguageAssistantModel {
       [this.#id]: {
         id: this.#id,
         name: this.#name,
-        chat: this.#chat
+        chat: this.#chat,
+        context: this.#context
       }
     });
   }
@@ -226,8 +235,8 @@ export default class LanguageAssistantModel {
   /**
    * Creates a new language assistant session
    */ 
-  static async Create() {
-    const instance = new LanguageAssistantModel();
+  static async Create(context = null) {
+    const instance = new LanguageAssistantModel(null, context);
     await instance.init();
     return instance;
   }

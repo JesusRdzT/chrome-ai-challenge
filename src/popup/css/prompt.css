@@ -154,6 +154,17 @@ main {
 }
 
 .system-message {
+    background-color: #c9e3f0;
+    color: #0f2733;
+    align-self: center;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    margin: 0.5rem 0;
+    max-width: 90%;
+    animation: fadeInUp 0.3s ease-in-out;
+}
+
+.error-message {
     background-color: #F8D7DA;
     color: #842029;
     align-self: center;

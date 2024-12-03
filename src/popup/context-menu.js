@@ -22,7 +22,12 @@ const handlePromptSubmit = (e) => {
 
   const values = Object.fromEntries(new FormData(e.target).entries());
   if (!values.prompt) return;
-  console.log(values);
+  window.close();
+  chrome.runtime.sendMessage({
+    action: "prompt",
+    prompt: values.prompt,
+    context: values.context,
+  });
 }
 
 function performAction({ action, context }) {

@@ -1,89 +1,95 @@
 .new-session-btn {
-    margin-right: 2rem;
+  margin-right: 2rem;
 }
 
 /* Translator and Storyteller Container */
 .translator-storyteller {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem; 
-    width: 100%; 
-    margin: 1rem 0; 
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; 
+  width: 100%; 
+  margin: 1rem 0; 
 }
 
 /* Saved Sessions */
 ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 .saved-sessions-container {
-    padding: 0.5rem;
-    overflow-y: auto;
-    overflow-x: hidden;
-    max-height: 100px;
-    margin-right: 2rem;
+  padding: 0.5rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 100px;
+  margin-right: 2rem;
 }
 
 .saved-sessions-list {
-    padding: 0;
-    margin: 0;
-    font-size: 0.8rem;
-    color: #555555;
+  padding: 0;
+  margin: 0;
+  font-size: 0.8rem;
+  color: #555555;
 }
 
 .saved-session-item {
-    padding: 0.3rem 0;
-    background: none;
-    text-align: left;
-    width: 100%;
-    font-size: 0.8rem;
-    color: #555555;
-    cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    border-bottom: 1px solid #f0f0f0;
-    font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3rem 0;
+  background: none;
+  text-align: left;
+  width: 100%;
+  font-size: 0.8rem;
+  color: #555555;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  border-bottom: 1px solid #f0f0f0;
+  font-weight: bold;
 }
 
 .saved-session-item:hover {
-    background-color: white;
-    transform: scale(1.05);
-    color: #2F88FC;
+  background-color: white;
+  transform: scale(1.05);
+  color: #2F88FC;
 }
 
 .saved-session-item:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .saved-sessions-container::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 
 .saved-sessions-container::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
+  background: #888;
+  border-radius: 4px;
 }
 
 .saved-sessions-container::-webkit-scrollbar-thumb:hover {
-    background: #555;
+  background: #555;
+}
+
+.session-link {
+  flex: 1 0 auto;
+  display: flex;
 }
 
 /* Icons Styles */
 
 .delete-session-icon {
-    width: 15px;
-    height: 15px;
-    cursor: pointer;
-    transition: transform 0.2s;
-    margin-left: 16rem;
-  }
-  
-  .delete-session-icon:hover {
-    transform: scale(1.1);
-  }
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.delete-session-icon:hover {
+  transform: scale(1.1);
+}

@@ -17,7 +17,7 @@ function disableForm(disabled) {
  */
 function addChatMessage({ id, role, content }) {
   const isError = id.startsWith('error-');
-  if (role === 'system' && !isError) return null;
+  //if (role === 'system' && !isError) return null;
 
   const message = document.createElement("div");
   const title = document.createElement("div");
@@ -72,13 +72,19 @@ async function handlePrompt(e) {
   e.preventDefault();
 
   const form = e.target;
-  const { promptInput } = form.elements;
+  const { promptInput, contextInput } = form.elements;
   if (!promptInput?.value) return;
 
   disableForm(true);
 
+  const context = contextInput.value ?? null;
   if (!assistant) {
-    assistant = await LanguageAssistantModel.Create();
+    assistant = await LanguageAssistantModel.Create(context);
+
+    if (context) {
+      const chat = assistant.getChat();
+      chat.forEach(addChatMessage);
+    }
   }
 
   const {
@@ -168,8 +174,9 @@ async function setup() {
 async function startContextSession(context, prompt) {
   if (!context || !prompt) return;
   const form = document.getElementById("prompt-form");
-  const { promptInput } = form.elements;
+  const { promptInput, contextInput } = form.elements;
   promptInput.value = prompt;
+  contextInput.value = context;
   form.requestSubmit();
 }
 
