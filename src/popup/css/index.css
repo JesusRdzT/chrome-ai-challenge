@@ -1,246 +1,114 @@
-.ext-dialog-box {
-	color: #ffffff;
-	position: absolute;
-	display: flex;
-	flex-direction: column;
-	width: min(90vw, 300px) !important;
-	padding: 1rem 1.5rem;
-	background: white;
-	border-radius: 0.75rem;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-	animation: popup-animation 0.3s ease-out forwards;
-	opacity: 0;
-	transform: scale(0.8);
-	box-sizing: border-box; 
-	overflow: hidden; 
+/* Context Label */
+#context-label {
+	font-size: calc(1.5rem + 1vw);
+	color: #444444;
+	margin-bottom: 1rem;
+	text-align: center;
+	font-weight: normal;
+	position: relative;
 }
 
-/* Popup animation */
-@keyframes popup-animation {
-	0% {
-		opacity: 0;
-		transform: scale(0.8);
-	}
-	100% {
-		opacity: 1;
-		transform: scale(1);
-	}
-}
-
-/* Form layout */
-.ext-dialog-box form {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-	width: 100%;
-}
-
-/* Universal styling for children */
-.ext-dialog-box * {
-	color: black;
-	box-sizing: border-box;
-}
-
-/* Row layout */
-.ext-row {
-	display: flex;
-	flex-direction: row;
-	width: 100%;
-	gap: 0.5rem;
-	justify-content: space-between;
-	align-items: center;
-}
-
-/* Column layout */
-.ext-col {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	gap: 0.5rem;
-}
-
-/* Options row */
-.ext-options-row {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 0.5rem;
-	margin: 0.5rem 0;
-	width: 100%;
+#context-label::after {
+	content: "";
+	display: block;
+	height: 2px;
+	width: 50%;
+	background-color: #ddd;
+	margin: 0.5rem auto 0;
 }
 
 /* Options container */
 .options-container {
 	display: flex;
+	flex-direction: column; 
 	align-items: center;
-	justify-content: center;
-	gap: 0.5rem;
 	width: 100%;
+	gap: 1rem;
+	margin-top: 1rem;
+	padding: 1rem;
+	box-sizing: border-box;
 }
 
-/* Dot separator */
-.option-dot {
-	font-size: calc(0.8rem + 0.1vw);
-	color: #888888;
-}
-
-/* Close button */
-.ext-dialog-box .close-btn {
-	position: absolute;
-	right: 0.5rem;
-	top: 0.5rem;
-	width: calc(1rem + 0.1vw);
-	aspect-ratio: 1;
-	padding: 0;
-	border: none;
-	border-radius: 10000px;
-	background-color: transparent;
-	cursor: pointer;
-}
-
-.close-btn:hover {
-	background-color: #00000020;
-}
-
-/* Footer layout */
-.ext-dialog-box .ext-dialog-footer {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	gap: 0.5rem;
-}
-
-/* Spinner */
-.ext-dialog-box .ext-spinner {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: calc(1.5rem + 0.2vw);
-	height: calc(1.5rem + 0.2vw);
-	border: none;
-	border-top: 0.1rem solid white;
-	border-radius: 10000px;
-	animation: rotate 1s linear infinite;
-}
-
-@keyframes rotate {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
+.options-container-section {
+	margin-right: 2rem;
 }
 
 /* Buttons */
 .ext-btn-secondary {
-	font-size: calc(0.8rem + 0.1vw); 
-	padding: calc(0.4rem + 0.1vw) calc(0.8rem + 0.2vw);
-	border-radius: 4px;
-	cursor: pointer;
-	text-align: center;
+	background-color: white;
+	color: #2F88FC;
+	font-size: calc(1rem + 0.3vw);
 	transition: transform 0.2s ease, background-color 0.3s ease;
-	flex: 1; 
-	max-width: 100%;
-}
-
-.ext-submit-icon{
-	width: 1rem;
-	height: 1rem;
-	animation: transform 0.3s ease;
-	transition: transform 0.3s ease; /* Add transition for hover animation */
-}
-
-.ext-submit-icon:hover{
-	transform: scale(1.25);
-}
-
-.ext-submit-icon:active {
-	transform: scale(0.9); /* Add click animation */
-}
-
-/* Secondary button */
-.ext-btn-secondary {
-	background-color: transparent !important;
-	color: #2F88FC !important;
-	border: 2px solid #2F88FC !important;
-	padding: calc(0.3rem + 0.1vw) calc(0.7rem + 0.2vw);
-	border-radius: 2rem;
+	width: 90%;
+	max-width: 500px;
+	padding: calc(0.7rem + 0.2vw);
+	border-radius: 0.5rem;
+	text-align: center;
+	cursor: pointer;
+	border: 1px solid #2F88FC;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .ext-btn-secondary:hover {
-	background-color: #2F88FC !important;
-	color: #ffffff !important;
-	transform: scale(1.05);
-}
-
-/* Dropdown container */
-.dropdown-container {
-	position: relative;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
+	background-color: #2F88FC;
+	color: white;
+	transform: scale(1.02);
+	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Search input */
-.dropdown-search-input {
+#prompt-input-section {
+    margin-top: 2rem;
+    
+    text-align: center;
+	flex: 1;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
 	width: 100%;
-	font-size: calc(0.9rem + 0.1vw);
-	padding: calc(0.4rem + 0.1vw);
-	border: 1px solid #ccc;
-	border-radius: 4px;
-    background-color: #f9f9f9 !important;
+}
+
+.prompt-input-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.prompt-input {
     flex: 1;
+    min-width: 250px;
+    max-width: 500px;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Dropdown options */
-.dropdown-options {
-	position: absolute;
-	top: 100%;
-	left: 0;
-	width: 100%;
-	background-color: #fff;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	max-height: 150px;
-	overflow-y: auto;
-	z-index: 1000;
+.prompt-input::placeholder {
+    color: #888888;
 }
 
-/* Dropdown option */
-.dropdown-option {
-	padding: calc(0.4rem + 0.1vw);
-	font-size: calc(0.8rem + 0.1vw);
-	cursor: pointer;
-	border-bottom: 1px solid #f0f0f0;
+.prompt-input:hover {
+    border-color: #2F88FC;
 }
 
-.dropdown-option:last-child {
-	border-bottom: none;
+.prompt-input-form button {
+    background-color: white;
+    border: none;
+    width: auto;
+    min-width: 50px;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.dropdown-option:hover {
-	background-color: #2F88FC;
-	color: #ffffff;
-}
-
-/* Media queries for responsiveness */
-@media (max-width: 480px) {
-	.ext-dialog-box {
-		width: 100%;
-		padding: 0.8rem;
-	}
-
-	.ext-btn-submit,
-	.ext-btn-primary,
-	.ext-btn-secondary {
-		font-size: 0.8rem;
-		padding: 0.4rem 0.8rem;
-	}
-
-	.dropdown-options {
-		max-height: 120px;
-	}
+.prompt-input-form button:hover {
+    transform: scale(1.25);
 }

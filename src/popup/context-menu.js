@@ -74,14 +74,6 @@ window.addEventListener("load", () => {
       btn.innerText = text;
       btn.onclick = () => performAction({ action, context: contextValue });
       actionContainer.appendChild(btn);
-
-      // Add a dot separator unless it's the last option
-      if (index < actions.length - 1) {
-        const dot = document.createElement("span");
-        dot.innerText = "•";
-        dot.classList.add("option-dot");
-        actionContainer.appendChild(dot);
-      }
     });
 
   }
