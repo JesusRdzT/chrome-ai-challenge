@@ -77,8 +77,8 @@ export default class LanguageAssistantModel {
 
     try {
       const { promptSettings } = await chrome.storage.sync.get('promptSettings');
-      this.#SYSTEM_TEMPERATURE = promptSettings.temperature;
-      this.#SYSTEM_TOP_K = promptSettings.topK;
+      this.#SYSTEM_TEMPERATURE = promptSettings?.temperature ?? 1;
+      this.#SYSTEM_TOP_K = promptSettings?.topK ?? 8;
 
       console.log("Settings - topk:", this.#SYSTEM_TOP_K, "  temp:", this.#SYSTEM_TEMPERATURE);
     } catch(e) {
