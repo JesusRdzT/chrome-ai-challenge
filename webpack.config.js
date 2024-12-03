@@ -47,7 +47,7 @@ export default {
 				{ from: 'src/icons', to: 'icons' },
         { from: 'src/manifest.json', to: 'manifest.json' },
 				{ from: 'src/background', to: 'background' },
-				{ from: 'src/content/index.css', to: 'content/index.css' },
+				{ from: 'src/popup/css/index.css', to: 'css/index.css' },
         { from: 'src/icons/right-arrow.png', to: 'icons/right-arrow.png' }
       ]
     })
