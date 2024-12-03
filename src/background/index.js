@@ -16,6 +16,7 @@ async function openContextOptions(context) {
     context: context,
   });
   chrome.action.setPopup({ popup: "popup/main.html" });
+ 
 }
 
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
@@ -24,12 +25,11 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
   }
 });
 
-let isCtrlPressed = false;
+let isShiftPressed = false;
 
-/*
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === "keyEvent") {
-    isCtrlPressed = message.keyPressed;
+    isShiftPressed = message.keyPressed;
   }
 });
 
@@ -43,28 +43,29 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 });
 
 function injectHotkeyListener() {
-  let isCtrlPressed = false;
+  let isShiftPressed = false;
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Control") {
-      isCtrlPressed = true;
+    if (event.key === "Shift") {
+      isShiftPressed = true;
     }
   });
 
   document.addEventListener("keyup", (event) => {
-    if (event.key === "Control") {
-      isCtrlPressed = false;
+    if (event.key === "Shift") {
+      isShiftPressed = false;
     }
   });
 
   document.addEventListener("mouseup", () => {
     const selectedText = window.getSelection().toString().trim();
-    if (isCtrlPressed && selectedText) {
+    if (isShiftPressed && selectedText) {
       chrome.runtime.sendMessage({
         action: "showContextDialog",
         context: selectedText,
       });
     }
+    isShiftPressed = false;
   });
 }
 
@@ -73,15 +74,20 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     openContextOptions(message.context);
   }
 });
-*/
+
 
 chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
   if (message.action === "prompt") {
     const { prompt, context, modal } = message;
 
     chrome.action.setPopup({ popup: 'popup/prompt.html' }, async () => {
+      await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve();
+        }, 1000);
+      });
       await chrome.action.openPopup();
-
+      
       chrome.runtime.sendMessage({
         action: "newSessionWithContext",
         prompt,
