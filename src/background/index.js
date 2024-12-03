@@ -26,6 +26,7 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
 
 let isCtrlPressed = false;
 
+/*
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === "keyEvent") {
     isCtrlPressed = message.keyPressed;
@@ -72,21 +73,23 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     openContextOptions(message.context);
   }
 });
+*/
 
 chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
   if (message.action === "prompt") {
     const { prompt, context, modal } = message;
 
-    chrome.action.setPopup({ popup: 'popup/prompt.html' });
-    await chrome.action.openPopup();
+    chrome.action.setPopup({ popup: 'popup/prompt.html' }, async () => {
+      await chrome.action.openPopup();
 
-    chrome.runtime.sendMessage({
-      action: "newSessionWithContext",
-      prompt,
-      context,
+      chrome.runtime.sendMessage({
+        action: "newSessionWithContext",
+        prompt,
+        context,
+      });
+
+      chrome.action.setPopup({ popup: "popup/main.html" });
     });
-
-    chrome.action.setPopup({ popup: "popup/main.html" });
   }
 
   return true;
