@@ -26,7 +26,6 @@ Now you are good to go!
 ## Functionalities:
 The following functionalities outline the interactions users can perform to explore the extension. There are two ways to open and interact with the extension: through the context menu or the extension popup.
 ### Context Menu (Used for direct interaction from the browser)
-- The user can press **shift + left click** on any selected text in the browser opening the modal dialog.
 - The **Define and Example** options open a prompt window with the selected word, sending it directly to the Gemini model. The model responds based on the selected word and its context.
 - The user can directly type any prompt from this modal, opening the prompt window for easier chatting.
 ### Extension Pop-up (This is the main experience)
@@ -68,10 +67,6 @@ In this section, we will outline the files in the repository and explain their p
 ### Content folder
 #### content -> gemini.js
 - This file defines a Language Assistant Model that serves as the core logic for handling sessions, messages, and interactions with a language model (Gemini Nano). 
-#### content -> index.js
-- This file serves as a listener for Chrome extension messages and facilitates the display of an assistant dialog.
-#### content -> speech-synthesis.js
-- This file defines a TextReader class for managing text-to-speech functionality using Chrome's TTS API. It includes customizable settings for rate, pitch, and voice name. The setSettings method updates these settings, while the speak method reads text aloud with optional event and finish callbacks.
 ### Popup folder
 #### popup -> context-menu.js
 - This file manages the creation and interaction of an Assistant Dialog Menu, allowing users to perform actions like defining words or generating examples for selected text. It dynamically constructs the dialog, and enables interactions through predefined actions or custom prompts.
