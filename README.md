@@ -26,7 +26,7 @@ Now you are good to go!
 ## Functionalities:
 The following functionalities outline the interactions users can perform to explore the extension. There are two ways to open and interact with the extension: through the context menu or the extension popup.
 ### Context Menu (Used for direct interaction from the browser)
-- The user can press **cntrl + left click** on any selected text in the browser opening the modal dialog.
+- The user can press **shift + left click** on any selected text in the browser opening the modal dialog.
 - The **Define and Example** options open a prompt window with the selected word, sending it directly to the Gemini model. The model responds based on the selected word and its context.
 - The user can directly type any prompt from this modal, opening the prompt window for easier chatting.
 ### Extension Pop-up (This is the main experience)
