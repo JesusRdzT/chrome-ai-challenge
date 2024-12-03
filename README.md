@@ -24,8 +24,8 @@ To install this project to run locally we we first need to:
 Now you are good to go!
 
 ## Functionalities:
-The following functionalities outline the interactions users can perform to explore the extension. There are two ways to open and interact with the extension: through the Dialog Modal or the extension popup.
-### Dialog Modal (Used for direct interaction from the browser)
+The following functionalities outline the interactions users can perform to explore the extension. There are two ways to open and interact with the extension: through the context menu or the extension popup.
+### Context Menu (Used for direct interaction from the browser)
 - The user can press **cntrl + left click** on any selected text in the browser opening the modal dialog.
 - The **Define and Example** options open a prompt window with the selected word, sending it directly to the Gemini model. The model responds based on the selected word and its context.
 - The user can directly type any prompt from this modal, opening the prompt window for easier chatting.
@@ -70,11 +70,11 @@ In this section, we will outline the files in the repository and explain their p
 - This file defines a Language Assistant Model that serves as the core logic for handling sessions, messages, and interactions with a language model (Gemini Nano). 
 #### content -> index.js
 - This file serves as a listener for Chrome extension messages and facilitates the display of an assistant dialog.
-#### content -> modal-dialog.js
-- This file manages the creation and interaction of an Assistant Dialog Box, allowing users to perform actions like defining words or generating examples for selected text. It dynamically constructs the dialog UI, positions it near the selected text using bounding rectangle calculations, and enables interactions through predefined actions or custom prompts.
 #### content -> speech-synthesis.js
 - This file defines a TextReader class for managing text-to-speech functionality using Chrome's TTS API. It includes customizable settings for rate, pitch, and voice name. The setSettings method updates these settings, while the speak method reads text aloud with optional event and finish callbacks.
 ### Popup folder
+#### popup -> context-menu.js
+- This file manages the creation and interaction of an Assistant Dialog Menu, allowing users to perform actions like defining words or generating examples for selected text. It dynamically constructs the dialog, and enables interactions through predefined actions or custom prompts.
 #### popup -> popup.js
 - This file handles displaying and managing saved sessions and the overall (Main Experience). It includes a message listener for debugging, a deleteSession function to remove sessions from storage, and setupPromptSection to dynamically list saved sessions with options to reopen or delete them, initializing the list on page load.
 #### popup -> prompt.js
