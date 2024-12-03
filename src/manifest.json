@@ -19,25 +19,13 @@
 		"service_worker": "background/index.js",
 		"type": "module"
 	},
-	"content_scripts": [
-		{
-			"matches": ["https://*/*", "http://*/*"],
-			"js": ["content/index.js"]
-		}
-	],
 	"permissions": [
      "scripting",
      "activeTab",
      "contextMenus",
      "aiLanguageModelOriginTrial",
-     "storage",
-     "tts",
-     "ttsEngine",
-	 "tabs"
+     "storage"
    ],
-   "host_permissions": [
-    "<all_urls>"
-  	],
 	"web_accessible_resources": [
 		{
 			"resources": [
