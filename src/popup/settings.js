@@ -79,7 +79,7 @@ async function setupTranslatorSettings() {
     const translatorSettings = Object.fromEntries(new FormData(e.target).entries());
     await chrome.storage.sync.set({ translatorSettings });
 
-    const status = document.getElementById('status');
+    const status = form.querySelector('#status');
     status.textContent = "Settings saved!";
     setTimeout(() => { status.textContent = ''; }, 1000);
   });
@@ -93,7 +93,7 @@ async function setupTranslatorSettings() {
   setSelectOptions(form.elements["targetLanguage"], LANG.map(lang => ({
     value: lang,
     textContent: langNames.of(lang),
-    selected: lang === translatorSettings.targetLanguage
+    selected: lang === translatorSettings?.targetLanguage
   })));
 
   disableForm(form, false);
@@ -122,7 +122,7 @@ async function setupPromptSettings() {
 
 
 window.addEventListener('load', function() {
-  setupReaderSettings();
+  //setupReaderSettings();
   setupTranslatorSettings();
   setupPromptSettings();
 });
